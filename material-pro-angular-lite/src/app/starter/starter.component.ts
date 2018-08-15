@@ -4,8 +4,7 @@ import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'starter',
-  templateUrl: './starter.component.html',
-  styleUrls: ['./starter.component.scss']
+  templateUrl: './starter.component.html'
 })
 export class StarterComponent implements AfterViewInit{
     ngAfterViewInit(){}    

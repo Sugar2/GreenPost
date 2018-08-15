@@ -1,18 +1,16 @@
 <mat-tab-group>
   <mat-tab label="Все">
-    <mat-card class="filters-card">
+    <mat-card>
       <mat-card-header>
         <mat-card-title>Фильтр заказов</mat-card-title>
       </mat-card-header>
     </mat-card>
     <mat-card>
       <mat-card-header>
-        <mat-card-title class="all-orders-card">Все заказы</mat-card-title>
+        <mat-card-title>Все заказы</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <table mat-table
-               [dataSource]="dataSource" multiTemplateDataRows
-               class="mat-elevation">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
           <ng-container matColumnDef="ID">
             <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.ID}}</mat-cell>
@@ -38,27 +36,17 @@
             <mat-cell *matCellDef="let element"> {{element.STATUS}}</mat-cell>
           </ng-container>
 
-          <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
           <ng-container matColumnDef="expandedDetail">
-            <mat-cell *matCellDef="let element">
-              <div class="example-element-detail"
-                   [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                <div class="example-element-diagram">
-                  <div class="example-element-COURIER"> {{element.COURIER}}</div>
-                </div>
-                <div class="example-element-description">
-                  {{element.description}}
-                </div>
-              </div>
+            <mat-cell *matCellDef="let element" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              {{element.COURIER}}
             </mat-cell>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="['ID','FROM','TO','RECEIVER','STATUS']"></tr>
-          <tr mat-row *matRowDef="let element; columns: ['ID','FROM','TO','RECEIVER','STATUS'];"
-              class="example-element-row"
-              [class.example-expanded-row]="expandedElement === element"
+          <tr mat-row *matRowDef="let element; columns: ['ID','FROM','TO','RECEIVER','STATUS'];" 
+              [class.expanded-row]="expandedElement === element"
               (click)="expandedElement = element"></tr>
-          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']"></tr>
         </table>
 
       </mat-card-content>
@@ -107,12 +95,10 @@
 
     <mat-card>
       <mat-card-header>
-        <mat-card-title class="order-info-details">Информация о посылке</mat-card-title>
+        <mat-card-title>Информация о посылке</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <table mat-table
-               [dataSource]="dataSource" multiTemplateDataRows
-               class="mat-elevation">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
           <ng-container matColumnDef="ID">
             <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.ID}}</mat-cell>
@@ -139,8 +125,7 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="['ID','FROM','TO','RECEIVER','STATUS']"></tr>
-          <tr mat-row *matRowDef="let element; columns: ['ID','FROM','TO','RECEIVER','STATUS'];"
-              class="example-element-row"></tr>
+          <tr mat-row *matRowDef="let element; columns: ['ID','FROM','TO','RECEIVER','STATUS'];"></tr>
         </table>
       </mat-card-content>
     </mat-card>
