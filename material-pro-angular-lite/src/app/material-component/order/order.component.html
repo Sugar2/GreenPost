@@ -1,0 +1,148 @@
+<mat-tab-group>
+  <mat-tab label="Все">
+    <mat-card class="filters-card">
+      <mat-card-header>
+        <mat-card-title>Фильтр заказов</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="all-orders-card">Все заказы</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table
+               [dataSource]="dataSource" multiTemplateDataRows
+               class="mat-elevation">
+          <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+            <th mat-header-cell *matHeaderCellDef>{{column='#'}}</th>
+            <td mat-cell *matCellDef="let element"> {{element[column]}}</td>
+          </ng-container>
+
+          <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+              <div class="example-element-detail"
+                   [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <div class="example-element-diagram">
+                  <div class="button-row">
+                    <button mat-raised-button color="warn">Детали</button>
+                  </div>
+                  <div class="example-element-COURIER"> {{element.COURIER}}</div>
+                  <!--<div class="example-element-TO"> {{element.TO}} </div>-->
+                  <!--<div class="example-element-ID"> {{element.ID}} </div>-->
+                  <!--<div class="example-element-FROM"> {{element.FROM}} </div>-->
+                </div>
+                <div class="example-element-description">
+                  {{element.description}}
+
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+              class="example-element-row"
+              [class.example-expanded-row]="expandedElement === element"
+              (click)="expandedElement = element">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+
+      </mat-card-content>
+    </mat-card>
+
+  </mat-tab>
+
+  <mat-tab label="Детальнее о заказе">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="order-info-transaction">Транзакция</mat-card-title>
+      </mat-card-header>
+      <span>
+        <mat-card fxFlex="2 2 auto">
+        <mat-card-content>
+          <mat-card-subtitle>Номер заказа:</mat-card-subtitle>
+          <mat-card-subtitle>789</mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+      <mat-card fxFlex="2 2 auto">
+        <mat-card-content>
+          <mat-card-subtitle>Откуда:</mat-card-subtitle>
+          <mat-card-subtitle>ул. Маяковского 18</mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+      <mat-card fxFlex="2 2 auto">
+        <mat-card-content>
+          <mat-card-subtitle>Куда:</mat-card-subtitle>
+          <mat-card-subtitle>ул. Лаврухина 7</mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+      <mat-card fxFlex="2 2 auto">
+        <mat-card-content>
+          <mat-card-subtitle>Получатель:</mat-card-subtitle>
+          <mat-card-subtitle>Игорь Ласточкин</mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+      <mat-card fxFlex="2 2 auto" class="order-info-transaction2">
+        <mat-card-content>
+          <mat-card-subtitle>Статус:</mat-card-subtitle>
+          <mat-card-subtitle>Проверка</mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+      </span>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="order-info-details">Информация о посылке</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table
+               [dataSource]="dataSource" multiTemplateDataRows
+               class="mat-elevation">
+          <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+            <th mat-header-cell *matHeaderCellDef> {{column}}</th>
+            <td mat-cell *matCellDef="let element"> {{element[column]}}</td>
+          </ng-container>
+
+          <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+              <div class="example-element-detail"
+                   [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <div class="example-element-diagram">
+                  <div class="example-element-COURIER"> {{element.COURIER}}</div>
+                  <!--<div class="example-element-TO"> {{element.TO}} </div>-->
+                  <!--<div class="example-element-ID"> {{element.ID}} </div>-->
+                  <!--<div class="example-element-FROM"> {{element.FROM}} </div>-->
+                </div>
+                <div class="example-element-description">
+                  {{element.description}}
+
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+              class="example-element-row"
+              [class.example-expanded-row]="expandedElement === element"
+              (click)="expandedElement = element">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+</mat-tab-group>
+
+<button mat-fab color="warn" class="floating-button"><i class="material-icons">
+  add
+</i></button>
+<button mat-fab color="primary" class="floating-button2"><i class="material-icons">
+  cloud_upload
+</i></button>
+

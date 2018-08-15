@@ -1,0 +1,96 @@
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: #f5f5f5;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.button-row button,
+.button-row a {
+  margin-right: 8px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+.floating-button {
+  right: 24px;
+  bottom: 30px;
+  position: fixed;
+  z-index: 997;
+}
+.floating-button2 {
+  right: 24px;
+  bottom: 100px;
+  position: fixed;
+  z-index: 997;
+}
+
+.filters-card {
+  height: 300px;
+  line-height: 70px;
+  /*text-align: center;*/
+}
+/*
+.all-orders-card {
+  text-align: center;
+}*/
+
+/*
+.order-info-transaction2{
+  margin-bottom: 15px;
+}
+.order-info-transaction{
+  text-align: center;
+}
+
+.order-info-details{
+  text-align: center;
+}
+*/
+
+.example-input-label,
+.example-add-tab-button,
+.example-delete-tab-button {
+  margin: 8px;
+}
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
