@@ -10,45 +10,42 @@
         <mat-card-title>Все заказы</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
-          <ng-container matColumnDef="ID">
-            <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ID}}</mat-cell>
-          </ng-container>
+          <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+              <ng-container matColumnDef="ID">
+                  <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.ID}}</mat-cell>
+              </ng-container>
 
-          <ng-container matColumnDef="RECEIVER">
-            <mat-header-cell *matHeaderCellDef>Получатель</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.RECEIVER}}</mat-cell>
-          </ng-container>
+              <ng-container matColumnDef="RECEIVER">
+                  <mat-header-cell *matHeaderCellDef>Получатель</mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.RECEIVER}}</mat-cell>
+              </ng-container>
 
-          <ng-container matColumnDef="FROM">
-            <mat-header-cell *matHeaderCellDef>Откуда</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.FROM}}</mat-cell>
-          </ng-container>
+              <ng-container matColumnDef="FROM">
+                  <mat-header-cell *matHeaderCellDef>Откуда</mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.FROM}}</mat-cell>
+              </ng-container>
 
-          <ng-container matColumnDef="TO">
-            <mat-header-cell *matHeaderCellDef>Куда</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.TO}}</mat-cell>
-          </ng-container>
+              <ng-container matColumnDef="TO">
+                  <mat-header-cell *matHeaderCellDef>Куда</mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.TO}}</mat-cell>
+              </ng-container>
 
-          <ng-container matColumnDef="STATUS">
-            <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.STATUS}}</mat-cell>
-          </ng-container>
+              <ng-container matColumnDef="STATUS">
+                  <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.STATUS}}</mat-cell>
+              </ng-container>
 
-          <ng-container matColumnDef="expandedDetail">
-            <mat-cell *matCellDef="let element" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-              {{element.COURIER}}
-            </mat-cell>
-          </ng-container>
+              <ng-container matColumnDef="expandedDetail">
+                  <mat-cell *matCellDef="let element" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                      {{element.COURIER}}
+                  </mat-cell>
+              </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="['ID','FROM','TO','RECEIVER','STATUS']"></tr>
-          <tr mat-row *matRowDef="let element; columns: ['ID','FROM','TO','RECEIVER','STATUS'];" 
-              [class.expanded-row]="expandedElement === element"
-              (click)="expandedElement = element"></tr>
-          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']"></tr>
-        </table>
-
+              <mat-header-row *matHeaderRowDef="['ID','FROM','TO','RECEIVER','STATUS']"></mat-header-row>
+              <mat-row *matRowDef="let element; columns: ['ID','FROM','TO','RECEIVER','STATUS'];"></mat-row>
+              <!--<mat-row *matRowDef="let row; columns: ['expandedDetail']"></mat-row>-->
+          </table>
       </mat-card-content>
     </mat-card>
 
@@ -98,7 +95,7 @@
         <mat-card-title>Информация о посылке</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+        <table mat-table [dataSource]="dataSource">
           <ng-container matColumnDef="ID">
             <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.ID}}</mat-cell>
@@ -124,8 +121,8 @@
             <mat-cell *matCellDef="let element"> {{element.STATUS}}</mat-cell>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="['ID','FROM','TO','RECEIVER','STATUS']"></tr>
-          <tr mat-row *matRowDef="let element; columns: ['ID','FROM','TO','RECEIVER','STATUS'];"></tr>
+          <mat-header-row *matHeaderRowDef="['ID','FROM','TO','RECEIVER','STATUS']"></mat-header-row>
+          <mat-row *matRowDef="let element; columns: ['ID','FROM','TO','RECEIVER','STATUS'];"></mat-row>
         </table>
       </mat-card-content>
     </mat-card>
@@ -133,9 +130,5 @@
 
 </mat-tab-group>
 
-<button mat-fab color="warn" class="floating-button"><i class="material-icons">
-  add
-</i></button>
-<button mat-fab color="primary" class="floating-button2"><i class="material-icons">
-  cloud_upload
-</i></button>
+<button mat-fab color="warn" class="floating-button"><mat-icon>add</mat-icon></button>
+<button mat-fab color="primary" class="floating-button2"><mat-icon>cloud_upload</mat-icon></button>
