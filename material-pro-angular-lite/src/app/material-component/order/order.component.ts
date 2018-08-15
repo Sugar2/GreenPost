@@ -18,7 +18,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class OrderComponent {
   dataSource = ELEMENT_DATA;
-  columnsToDisplay = ["ID","FROM","TO","RECEIVER","STATUS"];
   expandedElement: PeriodicElement;
 }
 
