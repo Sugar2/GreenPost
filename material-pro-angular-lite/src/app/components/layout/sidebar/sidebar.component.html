@@ -1,0 +1,50 @@
+<div class="user-profile" style="background: url(assets/images/background/user-info.jpg) no-repeat;">
+  <div class="profile-img"><img src="assets/images/users/1.jpg" alt="user"></div>
+  <div class="profile-text"><a [matMenuTriggerFor]="sdprofile" class=""> {{name$ | async}} <i class="ti-angle-down font-12 m-l-5"></i></a></div>
+  <mat-menu #sdprofile="matMenu" class="mymegamenu">
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon> Настройки
+    </button>
+    <button mat-menu-item>
+      <mat-icon>account_box</mat-icon> Профиль
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon> Отключить оповещения
+    </button>
+    <button mat-menu-item (click)="signOut()">
+      <mat-icon>exit_to_app</mat-icon> Выйти
+    </button>
+  </mat-menu>
+</div>
+<mat-nav-list>
+  <mat-list-item [class.selected]="starter.isActive">
+    <a routerLink="/starter"
+       routerLinkActive
+       [class.selected]="starter.isActive"
+       #starter="routerLinkActive">
+      <mat-icon>dashboard</mat-icon>
+      <span>Главная</span>
+      <span fxFlex></span>
+    </a>
+  </mat-list-item>
+  <mat-list-item [class.selected]="myprofile.isActive" *ngIf="false">
+    <a routerLink="/my-profile"
+       routerLinkActive
+       [class.selected]="myprofile.isActive"
+       #myprofile="routerLinkActive">
+      <mat-icon>date_range</mat-icon>
+      <span>Профиль</span>
+      <span fxFlex></span>
+    </a>
+  </mat-list-item>
+  <mat-list-item [class.selected]="myorders.isActive">
+    <a routerLink="/my-orders"
+       routerLinkActive
+       [class.selected]="myorders.isActive"
+       #myorders="routerLinkActive">
+      <mat-icon>business</mat-icon>
+      <span>Заказы</span>
+      <span fxFlex></span>
+    </a>
+  </mat-list-item>
+</mat-nav-list>

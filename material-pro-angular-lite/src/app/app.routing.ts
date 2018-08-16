@@ -1,20 +1,23 @@
 import { Routes } from '@angular/router';
 
-import { FullComponent } from './layouts/full/full.component';
+import { MyOrdersMainComponent, StarterComponent, MyOrdersSectionComponent, MyOrdersCardComponent } from './components';
 
 export const AppRoutes: Routes = [{
-  path: '',
-  component: FullComponent,
-  children: [{ 
-    path: '', 
-    redirectTo: '/starter', 
-    pathMatch: 'full' 
-  }, {
     path: '',
-    loadChildren: './material-component/material.module#MaterialComponentsModule'
-  }, {
+    redirectTo: 'starter',
+    pathMatch: 'full'
+}, {
     path: 'starter',
-    loadChildren: './starter/starter.module#StarterModule'
-  }]
+    component: StarterComponent
+}, {
+    path: 'my-orders',
+    component: MyOrdersMainComponent,
+    children: [{
+        path: 'section',
+        component: MyOrdersSectionComponent
+    }, {
+        path: 'card',
+        component: MyOrdersCardComponent
+    }]
 }];
 
