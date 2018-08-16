@@ -1,6 +1,6 @@
 {
-  "name": "material",
-  "version": "0.0.0",
+  "name": "greenpost",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
