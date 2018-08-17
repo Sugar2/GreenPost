@@ -30,6 +30,7 @@ import {
     MatTooltipModule,
     MatStepperModule,
     MatPaginatorModule,
+    MatBottomSheetModule
 } from '@angular/material';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -83,6 +84,7 @@ import { PortalModule } from '@angular/cdk/portal';
         OverlayModule,
         PlatformModule,
         PortalModule,
+        MatBottomSheetModule
     ]
 })
 export class MaterialModule { }

@@ -13,5 +13,7 @@ export class MyOrdersCardComponent {
 }
 
 const data: TransactionModel[] = [
-    { id: 1, from: 'from', to: 'to' }
+    { id: 1, from: 'Mayakovskoho 18', to: 'Warehouse 1', status: 'done' },
+    { id: 2, from: 'Warehouse 1', to: 'Warehouse 3', status: 'active' },
+    { id: 3, from: 'Warehouse 3', to: 'Lavrukhina 7/1', status: 'waiting' }
 ]

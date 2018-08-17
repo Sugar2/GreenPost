@@ -13,3 +13,9 @@ export * from './layout/header/header.component';
 
 //my-profile
 export * from './workspaces/my-profile/my-profile.component';
+
+//map
+export * from './widgets/map/map.component';
+
+//file-load
+export * from './widgets/file-load/file-load.component';

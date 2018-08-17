@@ -10,7 +10,7 @@ import { AppRoutes } from './app.routing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComponent, MyOrdersMainComponent, MyOrdersSectionComponent, StarterComponent, MyProfileComponent } from './components';
+import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComponent, MyOrdersMainComponent, MyOrdersSectionComponent, StarterComponent, MyProfileComponent, MapComponent, FileLoadComponent } from './components';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,9 @@ import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComp
     MyOrdersMainComponent,
     MyOrdersSectionComponent,
     StarterComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    MapComponent,
+    FileLoadComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +35,12 @@ import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComp
     RouterModule.forRoot(AppRoutes)  
   ],
   providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
+  provide: LocationStrategy,
+  useClass: HashLocationStrategy
   }],
+  entryComponents: [
+    FileLoadComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
