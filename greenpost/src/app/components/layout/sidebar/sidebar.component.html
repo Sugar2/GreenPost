@@ -47,4 +47,14 @@
       <span fxFlex></span>
     </a>
   </mat-list-item>
+  <mat-list-item [class.selected]="logisticsorders.isActive">
+    <a routerLink="/logistics-orders"
+       routerLinkActive
+       [class.selected]="logisticsorders.isActive"
+       #logisticsorders="routerLinkActive">
+      <mat-icon>business</mat-icon>
+      <span>Доставки</span>
+      <span fxFlex></span>
+    </a>
+  </mat-list-item>
 </mat-nav-list>

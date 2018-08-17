@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { MyOrdersMainComponent, StarterComponent, MyOrdersSectionComponent, MyOrdersCardComponent, MyProfileComponent } from './components';
+import { MyOrdersMainComponent, StarterComponent, MyOrdersSectionComponent, MyOrdersCardComponent, MyProfileComponent, LogisticsOrdersMainComponent, LogisticsOrdersSectionComponent, LogisticsOrdersCardComponent } from './components';
 
 export const AppRoutes: Routes = [{
     path: '',
@@ -22,6 +22,17 @@ export const AppRoutes: Routes = [{
     }, {
         path: 'card',
         component: MyOrdersCardComponent
+    }]
+}, {
+    path: 'logistics-orders',
+    component: LogisticsOrdersMainComponent,
+    children: [
+     { path: '', pathMatch: 'full', redirectTo: 'section' },{
+        path: 'section',
+        component: LogisticsOrdersSectionComponent
+    }, {
+        path: 'card',
+        component: LogisticsOrdersCardComponent
     }]
 }];
 

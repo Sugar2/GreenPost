@@ -1,0 +1,73 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="order-info-transaction">Order no.1</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div fxLayout="row">
+            <div fxFlex="1 1 auto">
+                <div class="client-info-block">
+                    <span class="client-info-caption">Reciever</span>
+                    <br />
+                    <span>Igor Ivanov</span>
+                </div>
+                <div class="client-info-block">
+                    <span class="client-info-caption">Status</span>
+                    <br />
+                    <span>Active</span>
+                </div>
+            </div>
+            <span fxFlex></span>
+            <div fxFlex="1 1 auto">
+                <div class="client-info-block">
+                    <span class="client-info-caption">From</span>
+                    <br />
+                    <span>Mayakovskoho 18</span>
+                </div>
+                <div class="client-info-block">
+                    <span class="client-info-caption">To</span>
+                    <br />
+                    <span>Lavrukhina 7</span>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Map</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <gmap></gmap>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Delivery status</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <table mat-table [dataSource]="dataSource" fxFlex>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="from">
+                <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.from}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="to">
+                <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.to}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="['id','from','to','status']"></mat-header-row>
+            <mat-row *matRowDef="let element; columns: ['id','from','to','status'];"></mat-row>
+        </table>
+    </mat-card-content>
+</mat-card>

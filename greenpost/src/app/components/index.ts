@@ -3,6 +3,11 @@ export * from './workspaces/my-orders/main/main.component';
 export * from './workspaces/my-orders/card/card.component';
 export * from './workspaces/my-orders/section/section.component';
 
+//logistics-orders
+export * from './workspaces/logistics-orders/main/main.component';
+export * from './workspaces/logistics-orders/card/card.component';
+export * from './workspaces/logistics-orders/section/section.component';
+
 //starter
 export * from './workspaces/starter/starter.component';
 
