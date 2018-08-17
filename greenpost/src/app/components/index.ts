@@ -10,3 +10,6 @@ export * from './workspaces/starter/starter.component';
 export * from './layout/app/app.component';
 export * from './layout/sidebar/sidebar.component';
 export * from './layout/header/header.component';
+
+//my-profile
+export * from './workspaces/my-profile/my-profile.component';

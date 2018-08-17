@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { MyOrdersMainComponent, StarterComponent, MyOrdersSectionComponent, MyOrdersCardComponent } from './components';
+import { MyOrdersMainComponent, StarterComponent, MyOrdersSectionComponent, MyOrdersCardComponent, MyProfileComponent } from './components';
 
 export const AppRoutes: Routes = [{
     path: '',
@@ -10,9 +10,13 @@ export const AppRoutes: Routes = [{
     path: 'starter',
     component: StarterComponent
 }, {
+    path: 'my-profile',
+    component: MyProfileComponent
+}, {
     path: 'my-orders',
     component: MyOrdersMainComponent,
-    children: [{
+    children: [
+     { path: '', pathMatch: 'full', redirectTo: 'section' },{
         path: 'section',
         component: MyOrdersSectionComponent
     }, {

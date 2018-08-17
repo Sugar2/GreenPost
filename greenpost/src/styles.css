@@ -3,6 +3,6 @@
 .floating-button {
   right: 24px;
   bottom: 45px;
-  position: fixed;
+  position: fixed !important;
   z-index: 997;
 }

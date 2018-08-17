@@ -1,6 +1,6 @@
 <div class="user-profile" style="background: url(assets/images/background/user-info.jpg) no-repeat;">
   <div class="profile-img"><img src="assets/images/users/1.jpg" alt="user"></div>
-  <div class="profile-text"><a [matMenuTriggerFor]="sdprofile" class=""> {{name$ | async}} <i class="ti-angle-down font-12 m-l-5"></i></a></div>
+  <div class="profile-text"><a [matMenuTriggerFor]="sdprofile" class=""> Кощеев Сергей <i class="ti-angle-down font-12 m-l-5"></i></a></div>
   <mat-menu #sdprofile="matMenu" class="mymegamenu">
     <button mat-menu-item>
       <mat-icon>settings</mat-icon> Настройки
@@ -27,7 +27,7 @@
       <span fxFlex></span>
     </a>
   </mat-list-item>
-  <mat-list-item [class.selected]="myprofile.isActive" *ngIf="false">
+  <mat-list-item [class.selected]="myprofile.isActive">
     <a routerLink="/my-profile"
        routerLinkActive
        [class.selected]="myprofile.isActive"
