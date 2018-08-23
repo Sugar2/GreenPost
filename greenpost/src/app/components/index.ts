@@ -8,6 +8,11 @@ export * from './workspaces/logistics-orders/main/main.component';
 export * from './workspaces/logistics-orders/card/card.component';
 export * from './workspaces/logistics-orders/section/section.component';
 
+//logistics-transactions
+export * from './workspaces/logistics-transactions/main/main.component';
+export * from './workspaces/logistics-transactions/card/card.component';
+export * from './workspaces/logistics-transactions/section/section.component';
+
 //starter
 export * from './workspaces/starter/starter.component';
 
