@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { MyOrdersMainComponent, StarterComponent, MyOrdersSectionComponent, MyOrdersCardComponent, MyProfileComponent, LogisticsOrdersMainComponent, LogisticsOrdersSectionComponent, LogisticsOrdersCardComponent } from './components';
+import { MyOrdersMainComponent, StarterComponent, MyOrdersSectionComponent, MyOrdersCardComponent, MyProfileComponent, LogisticsOrdersMainComponent, LogisticsOrdersSectionComponent, LogisticsOrdersCardComponent, LogisticsTransactionsMainComponent, LogisticsTransactionsCardComponent, LogisticsTransactionsSectionComponent } from './components';
 
 export const AppRoutes: Routes = [{
     path: '',
@@ -34,5 +34,17 @@ export const AppRoutes: Routes = [{
         path: 'card',
         component: LogisticsOrdersCardComponent
     }]
-}];
+}, {
+    path: 'logistics-transactions',
+    component: LogisticsTransactionsMainComponent,
+    children: [
+     { path: '', pathMatch: 'full', redirectTo: 'section'},{
+        path: 'section',
+        component: LogisticsTransactionsSectionComponent
+     }, {
+        path: 'card',
+        component: LogisticsTransactionsCardComponent
+     }]
+}
+];
 
