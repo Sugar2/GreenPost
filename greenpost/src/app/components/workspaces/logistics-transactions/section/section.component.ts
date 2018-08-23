@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import { OrderModel } from '../../../../models';
+import {OrderModel} from '../../../../models';
 import { MatTableDataSource, MatBottomSheet } from '@angular/material';
 import { Router } from '@angular/router';
 import { FileLoadComponent } from '../../../widgets/file-load/file-load.component';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'logistics-transactions-section',
@@ -22,6 +23,24 @@ export class LogisticsTransactionsSectionComponent {
         this.bottomSheet.open(FileLoadComponent);
     }
 
+    displayedColumns: string[] = ['select', 'id', 'from', 'to', 'reciever', 'status'];
+    selection = new SelectionModel<OrderModel>(true, []);
+
+    /** Whether the number of selected elements matches the total number of rows. */
+    isAllSelected() {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.dataSource.data.length;
+        return numSelected === numRows;
+    }
+
+    /** Selects all rows if they are not all selected; otherwise clear selection. */
+    masterToggle() {
+        this.isAllSelected() ?
+            this.selection.clear() :
+            this.dataSource.data.forEach(row => this.selection.select(row));
+    }
+
+
 }
 
 const data: OrderModel[] = [
@@ -31,5 +50,3 @@ const data: OrderModel[] = [
     { id: 4, from: 'Mayakovskoho 18', to: 'Lavrukhina 7/1', reciever: 'Igor Ivanov', status: 'Active' },
     { id: 5, from: 'Mayakovskoho 18', to: 'Lavrukhina 7/1', reciever: 'Igor Ivanov', status: 'Active' }
 ]
-
-
