@@ -10,7 +10,7 @@ import { AppRoutes } from './app.routing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComponent, MyOrdersMainComponent, MyOrdersSectionComponent, StarterComponent, MyProfileComponent, MapComponent, FileLoadComponent, LogisticsOrdersCardComponent, LogisticsOrdersMainComponent, LogisticsOrdersSectionComponent } from './components';
+import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComponent, MyOrdersMainComponent, MyOrdersSectionComponent, StarterComponent, MyProfileComponent, MapComponent, FileLoadComponent, LogisticsOrdersCardComponent, LogisticsOrdersMainComponent, LogisticsOrdersSectionComponent, LogisticsTransactionsSectionComponent, LogisticsTransactionsMainComponent, LogisticsTransactionsCardComponent } from './components';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,9 @@ import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComp
     LogisticsOrdersCardComponent,
     LogisticsOrdersMainComponent,
     LogisticsOrdersSectionComponent,
+    LogisticsTransactionsSectionComponent,
+    LogisticsTransactionsCardComponent,
+    LogisticsTransactionsMainComponent,
     StarterComponent,
     MyProfileComponent,
     MapComponent,
