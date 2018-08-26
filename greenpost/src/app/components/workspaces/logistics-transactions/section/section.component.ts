@@ -23,7 +23,7 @@ export class LogisticsTransactionsSectionComponent {
         this.bottomSheet.open(FileLoadComponent);
     }
 
-    displayedColumns: string[] = ['select', 'id', 'from', 'to', 'reciever', 'status'];
+    displayedColumns: string[] = ['select', 'from', 'to', 'reciever', 'status'];
     selection = new SelectionModel<OrderModel>(true, []);
 
     /** Whether the number of selected elements matches the total number of rows. */
