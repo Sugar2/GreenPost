@@ -32,7 +32,7 @@
            routerLinkActive
            [class.selected]="myprofile.isActive"
            #myprofile="routerLinkActive">
-            <mat-icon>date_range</mat-icon>
+            <mat-icon>portrait</mat-icon>
             <span>Профиль</span>
             <span fxFlex></span>
         </a>
@@ -42,8 +42,19 @@
            routerLinkActive
            [class.selected]="myorders.isActive"
            #myorders="routerLinkActive">
-            <mat-icon>business</mat-icon>
+            <mat-icon>shop</mat-icon>
             <span>Заказы</span>
+            <span fxFlex></span>
+        </a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item [class.selected]="starter.isActive">
+        <a routerLink="/starter"
+           routerLinkActive
+           [class.selected]="starter.isActive"
+           #starter="routerLinkActive">
+            <mat-icon>dashboard</mat-icon>
+            <span>Главная</span>
             <span fxFlex></span>
         </a>
     </mat-list-item>
@@ -52,8 +63,8 @@
            routerLinkActive
            [class.selected]="logisticsorders.isActive"
            #logisticsorders="routerLinkActive">
-            <mat-icon>business</mat-icon>
-            <span>Доставки</span>
+            <mat-icon>shop</mat-icon>
+            <span>Заказы</span>
             <span fxFlex></span>
         </a>
     </mat-list-item>
@@ -62,7 +73,7 @@
            routerLinkActive
            [class.selected]="logisticstransactions.isActive"
            #logisticstransactions="routerLinkActive">
-            <mat-icon>business</mat-icon>
+            <mat-icon>shop_two</mat-icon>
             <span>Перевозки</span>
             <span fxFlex></span>
         </a>
