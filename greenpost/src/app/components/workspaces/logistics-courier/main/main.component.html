@@ -1,0 +1,11 @@
+<nav mat-tab-nav-bar>
+    <a mat-tab-link
+       routerLinkActive #section="routerLinkActive"
+       [active]="section.isActive"
+       routerLink="/logistics-couriers/section">All orders</a>
+    <a mat-tab-link
+       routerLinkActive #card="routerLinkActive"
+       [active]="card.isActive"
+       routerLink="/logistics-couriers/card">Details</a>
+</nav>
+<router-outlet></router-outlet>
