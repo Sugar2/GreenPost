@@ -13,6 +13,11 @@ export * from './workspaces/logistics-transactions/main/main.component';
 export * from './workspaces/logistics-transactions/card/card.component';
 export * from './workspaces/logistics-transactions/section/section.component';
 
+//logistics-couriers
+export * from './workspaces/logistics-courier/main/main.component';
+export * from './workspaces/logistics-courier/card/card.component';
+export * from './workspaces/logistics-courier/section/section.component';
+
 //starter
 export * from './workspaces/starter/starter.component';
 
