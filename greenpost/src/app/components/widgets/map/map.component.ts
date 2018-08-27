@@ -54,5 +54,36 @@ export class MapComponent {
             strokeWeight: 2
         });
         flightPath.setMap(this.map);
+
+
+        /////Map markers
+        var LatLng = {lat: 50.429108, lng: 30.593034};
+        var marker = new google.maps.Marker({
+            position: LatLng,
+            map: this.map,
+            title: 'Hello World!'
+        });
+        var LatLngTroya = {lat: 50.523171, lng: 30.607346};
+        var markerTroya = new google.maps.Marker({
+            position: LatLngTroya,
+            map: this.map,
+            title: 'Troya'
+        });
+        var LatLngTeatralna = {lat: 50.445158,lng: 30.518164};
+        var markerTeatalna = new google.maps.Marker({
+            position: LatLngTeatralna,
+            map: this.map,
+            title: 'Teatralna'
+        });
+        var LatLngOceanPlaza = {lat: 50.411335,lng: 30.526813};
+        var markerOceanPlaza = new google.maps.Marker({
+            position: LatLngOceanPlaza,
+            map: this.map,
+            title: 'OceanPlaz'
+        });
+        marker.setMap(this.map);
+        markerTeatalna.setMap(this.map);
+        markerTroya.setMap(this.map);
+        markerOceanPlaza.setMap(this.map);
     }
 }
