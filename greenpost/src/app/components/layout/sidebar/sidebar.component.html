@@ -78,4 +78,14 @@
             <span fxFlex></span>
         </a>
     </mat-list-item>
+    <mat-list-item [class.selected]="logisticscouriers.isActive">
+        <a routerLink="/logistics-couriers"
+           routerLinkActive
+           [class.selected]="logisticscouriers.isActive"
+           #logisticscouriers="routerLinkActive">
+            <mat-icon>directions_run</mat-icon>
+            <span>Курьеры</span>
+            <span fxFlex></span>
+        </a>
+    </mat-list-item>
 </mat-nav-list>
