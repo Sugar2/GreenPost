@@ -37,6 +37,16 @@ export class MyUsersSectionComponent implements OnInit {
   }
   applyFilter(filterValue: string) {
     return true;
+    }
+  openCreateDialog(): void {
+    var dialogRef = this.dialog.open(MyUsersCreateModalComponent, {
+      width: '500px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        
+    });
   }
 }
 
