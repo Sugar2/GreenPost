@@ -47,6 +47,16 @@
             <span fxFlex></span>
         </a>
     </mat-list-item>
+    <mat-list-item [class.selected]="myusers.isActive">
+        <a routerLink="/my-users"
+           routerLinkActive
+           [class.selected]="myusers.isActive"
+           #myusers="routerLinkActive">
+            <mat-icon>person</mat-icon>
+            <span>Пользователи</span>
+            <span fxFlex></span>
+        </a>
+    </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item [class.selected]="starter.isActive">
         <a routerLink="/starter"

@@ -1,0 +1,43 @@
+<mat-card *ngIf="false">
+  <mat-card-content>
+    <mat-card-title>Поиск</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef>Логин</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-form-field (click)="$event.stopPropagation();">
+          <input matInput [value]="row.username">
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="displayName">
+      <mat-header-cell *matHeaderCellDef>Имя</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-form-field (click)="$event.stopPropagation();">
+          <input matInput [value]="row.displayName">
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="roles">
+      <mat-header-cell *matHeaderCellDef>Роли</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-chip-list>
+          <mat-chip color="accent" selectable="false" *ngIf="row.roles.length == 0" selected>
+            +
+          </mat-chip>
+          <mat-chip color="accent" *ngFor="let role of row.roles" selectable="false" selected>
+            {{ role.name }}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="['username', 'displayName', 'roles']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['username', 'displayName', 'roles']"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 100]"></mat-paginator>
+</mat-card>
+<button class="floating-button" color="accent" mat-fab matTooltip="Добавить нового пользователя" matTooltipPosition="left"><mat-icon>person_add</mat-icon></button>

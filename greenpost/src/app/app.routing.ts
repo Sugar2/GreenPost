@@ -14,7 +14,9 @@ import {
     LogisticsTransactionsSectionComponent,
     LogisticsCourierCardComponent,
     LogisticsCourierSectionComponent,
-    LogisticsCourierMainComponent
+    LogisticsCourierMainComponent,
+    MyUsersMainComponent,
+    MyUsersSectionComponent
 } from './components';
 
 export const AppRoutes: Routes = [{
@@ -38,6 +40,13 @@ export const AppRoutes: Routes = [{
         path: 'card',
         component: MyOrdersCardComponent
     }]
+}, {
+    path: 'my-users',
+    component: MyUsersMainComponent,
+    children: [
+        { path: '', pathMatch: 'full', redirectTo: 'section' },
+        { path: 'section', component: MyUsersSectionComponent }
+    ]
 }, {
     path: 'logistics-orders',
     component: LogisticsOrdersMainComponent,

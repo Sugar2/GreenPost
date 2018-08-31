@@ -1,0 +1,7 @@
+<nav mat-tab-nav-bar>
+    <a mat-tab-link
+       routerLinkActive #section="routerLinkActive"
+       [active]="section.isActive"
+       routerLink="/my-users/section">All users</a>
+</nav>
+<router-outlet></router-outlet>

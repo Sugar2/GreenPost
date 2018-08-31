@@ -1,0 +1,24 @@
+<h3 mat-dialog-title>Добавить нового пользователя</h3>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Логин" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Имя" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email"required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="password" placeholder="Пароль" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Роли..." multiple>
+      <mat-option *ngFor="let role of allRoles" [value]="role">{{role.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button tabindex="1">Сохранить</button>
+  <button mat-button tabindex="2">Отменить</button>
+</div>

@@ -3,6 +3,11 @@ export * from './workspaces/my-orders/main/main.component';
 export * from './workspaces/my-orders/card/card.component';
 export * from './workspaces/my-orders/section/section.component';
 
+//my-users
+export * from './workspaces/my-users/main/main.component';
+export * from './workspaces/my-users/create-modal/create-modal.component';
+export * from './workspaces/my-users/section/section.component';
+
 //logistics-orders
 export * from './workspaces/logistics-orders/main/main.component';
 export * from './workspaces/logistics-orders/card/card.component';
