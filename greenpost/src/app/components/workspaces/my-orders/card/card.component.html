@@ -7,12 +7,12 @@
             <div fxFlex="1 1 auto">
                 <div class="client-info-block">
                     <span class="client-info-caption">Получатель</span>
-                    <br />
+                    <br/>
                     <span>Игорь Иванов</span>
                 </div>
                 <div class="client-info-block">
                     <span class="client-info-caption">Статус</span>
-                    <br />
+                    <br/>
                     <span>Активен</span>
                 </div>
             </div>
@@ -20,18 +20,18 @@
             <div fxFlex="1 1 auto">
                 <div class="client-info-block">
                     <span class="client-info-caption">Адрес отправителя</span>
-                    <br />
+                    <br/>
                     <span>Маяковского 18</span>
                 </div>
                 <div class="client-info-block">
                     <span class="client-info-caption">Адрес получателя</span>
-                    <br />
+                    <br/>
                     <span>Лаврухина 7</span>
                 </div>
             </div>
             <div fxFlex="1 1 auto">
                 <div class="client-info-block">
-                    <br />
+                    <br/>
                     <mat-form-field>
                         <mat-select placeholder="Тип доставки">
                             <mat-option *ngFor="let typeOfDelivery of typesOfDelivery" [value]="typeOfDelivery.value">
@@ -42,7 +42,29 @@
                 </div>
             </div>
             <span fxFlex></span>
+            <div fxFlex="1 1 auto">
+                <div class="client-info-block">
+                    <br/>
+                    <mat-form-field>
+                        <mat-chip-list #chipList>
+                            <mat-chip *ngFor="let phone of phones" [selectable]="selectable"
+                                      [removable]="removable" (removed)="remove(phone)">
+                                {{phone.name}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input placeholder="Добавить номер телефона..."
+                                   [matChipInputFor]="chipList"
+                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                   [matChipInputAddOnBlur]="addOnBlur"
+                                   (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+            </div>
+            <span fxFlex></span>
         </div>
+
+
     </mat-card-content>
 </mat-card>
 <mat-card>
@@ -84,4 +106,6 @@
         </table>
     </mat-card-content>
 </mat-card>
-<button mat-fab color="accent" class="floating-button" matTooltip="Копировать заказ" matTooltipPosition="left"><mat-icon>library_add</mat-icon></button>
+<button mat-fab color="accent" class="floating-button" matTooltip="Копировать заказ" matTooltipPosition="left">
+    <mat-icon>library_add</mat-icon>
+</button>
