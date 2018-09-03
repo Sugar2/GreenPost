@@ -1,9 +1,13 @@
 import {Component} from '@angular/core';
 import { OrderModel } from '../../../../models';
-import { MatTableDataSource, MatBottomSheet } from '@angular/material';
+import {MatTableDataSource, MatBottomSheet, MatChipInputEvent} from '@angular/material';
 import { Router } from '@angular/router';
 import { FileLoadComponent } from '../../../widgets/file-load/file-load.component';
-
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {SelectionModel} from "@angular/cdk/collections";
+export interface Phone {
+    name: string;
+}
 @Component({
   selector: 'logistics-orders-section',
   templateUrl: './section.component.html',
@@ -21,12 +25,45 @@ export class LogisticsOrdersSectionComponent {
     openBottomSheet(): void {
         this.bottomSheet.open(FileLoadComponent);
     }
+    visible = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    phones: Phone[] = [
+        {name: '+380990664449'},
+    ];
+
+    add(event: MatChipInputEvent): void {
+        const input = event.input;
+        const value = event.value;
+
+        // Add our fruit
+        if ((value || '').trim()) {
+            this.phones.push({name: value.trim()});
+        }
+
+        // Reset the input value
+        if (input) {
+            input.value = '';
+        }
+    }
+
+    remove(phone: Phone): void {
+        const index = this.phones.indexOf(phone);
+
+        if (index >= 0) {
+            this.phones.splice(index, 1);
+        }
+    }
+
 }
 
 const data: OrderModel[] = [
-    { id: 1, from: 'Mayakovskoho 18', to: 'Lavrukhina 7/1', reciever: 'Igor Ivanov', status: 'Active' },
-    { id: 2, from: 'Mayakovskoho 18', to: 'Lavrukhina 7/1', reciever: 'Igor Ivanov', status: 'Active' },
-    { id: 3, from: 'Mayakovskoho 18', to: 'Lavrukhina 7/1', reciever: 'Igor Ivanov', status: 'Active' },
-    { id: 4, from: 'Mayakovskoho 18', to: 'Lavrukhina 7/1', reciever: 'Igor Ivanov', status: 'Active' },
-    { id: 5, from: 'Mayakovskoho 18', to: 'Lavrukhina 7/1', reciever: 'Igor Ivanov', status: 'Active' }
+    { id: 1, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '232 UAH', typeOfOrder:'экспресс'},
+    { id: 2, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '232 UAH', typeOfOrder:'экспресс'},
+    { id: 3, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '232 UAH', typeOfOrder:'экспресс'},
+    { id: 4, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '232 UAH', typeOfOrder:'экспресс'},
+    { id: 5, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '232 UAH', typeOfOrder:'экспресс'}
 ]
+
