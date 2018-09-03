@@ -1,7 +1,10 @@
 import {Component} from '@angular/core';
 import { TransactionModel } from '../../../../models';
 import { MatTableDataSource } from '@angular/material';
-
+export interface TypesOfDelivery {
+    value: string;
+    viewValue: string;
+}
 @Component({
   selector: 'my-orders-card',
   templateUrl: './card.component.html',
@@ -10,10 +13,14 @@ import { MatTableDataSource } from '@angular/material';
 
 export class MyOrdersCardComponent {
     dataSource = new MatTableDataSource<TransactionModel>(data);
+    typesOfDelivery: TypesOfDelivery[] = [
+        {value: 'standart-0', viewValue: 'Стандарт'},
+        {value: 'express-1', viewValue: 'Экспресс'}
+    ];
 }
 
 const data: TransactionModel[] = [
-    { id: 1, from: 'Mayakovskoho 18', to: 'Warehouse 1', status: 'done' },
-    { id: 2, from: 'Warehouse 1', to: 'Warehouse 3', status: 'active' },
-    { id: 3, from: 'Warehouse 3', to: 'Lavrukhina 7/1', status: 'waiting' }
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'сделан' },
+    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'активен' },
+    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'в ожидании' }
 ]
