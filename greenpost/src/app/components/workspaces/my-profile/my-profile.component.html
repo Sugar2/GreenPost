@@ -1,5 +1,18 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>My profile page</mat-card-title>
-    </mat-card-header>
-</mat-card>
+<mat-grid-list cols="2">
+    <mat-grid-tile>
+        <mat-card fxFlex="1 1 auto">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Иван Иванов</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <span>+380990664449</span>
+            <mat-card-actions>
+                <button mat-button>Активные заказы</button>
+                <button mat-button>История заказов</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>Таблица активных заказов</mat-grid-tile>
+</mat-grid-list>
+
