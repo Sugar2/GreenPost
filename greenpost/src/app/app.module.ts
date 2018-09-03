@@ -13,47 +13,47 @@ import { MaterialModule } from './material.module';
 import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComponent, MyOrdersMainComponent, MyOrdersSectionComponent, StarterComponent, MyProfileComponent, MapComponent, FileLoadComponent, LogisticsOrdersCardComponent, LogisticsOrdersMainComponent, LogisticsOrdersSectionComponent, LogisticsTransactionsSectionComponent, LogisticsTransactionsMainComponent, LogisticsTransactionsCardComponent, LogisticsCourierSectionComponent, LogisticsCourierMainComponent, LogisticsCourierCardComponent, MyUsersSectionComponent, MyUsersCreateModalComponent, MyUsersMainComponent } from './components';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AppHeaderComponent,
-    AppSidebarComponent,
-    MyOrdersCardComponent,
-    MyOrdersMainComponent,
-    MyOrdersSectionComponent,
-    MyUsersMainComponent,
-    MyUsersCreateModalComponent,
-    MyUsersSectionComponent,
-    LogisticsOrdersCardComponent,
-    LogisticsOrdersMainComponent,
-    LogisticsOrdersSectionComponent,
-    LogisticsTransactionsSectionComponent,
-    LogisticsTransactionsCardComponent,
-    LogisticsTransactionsMainComponent,
-    LogisticsCourierSectionComponent,
-    LogisticsCourierCardComponent,
-    LogisticsCourierMainComponent,
-    StarterComponent,
-    MyProfileComponent,
-    MapComponent,
-    FileLoadComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    FlexLayoutModule,  
-    HttpClientModule, 
-    RouterModule.forRoot(AppRoutes)  
-  ],
-  providers: [{
-  provide: LocationStrategy,
-  useClass: HashLocationStrategy
-  }],
-  entryComponents: [
-    FileLoadComponent,
-    MyUsersCreateModalComponent
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        AppHeaderComponent,
+        AppSidebarComponent,
+        MyOrdersCardComponent,
+        MyOrdersMainComponent,
+        MyOrdersSectionComponent,
+        MyUsersMainComponent,
+        MyUsersCreateModalComponent,
+        MyUsersSectionComponent,
+        LogisticsOrdersCardComponent,
+        LogisticsOrdersMainComponent,
+        LogisticsOrdersSectionComponent,
+        LogisticsTransactionsSectionComponent,
+        LogisticsTransactionsCardComponent,
+        LogisticsTransactionsMainComponent,
+        LogisticsCourierSectionComponent,
+        LogisticsCourierCardComponent,
+        LogisticsCourierMainComponent,
+        StarterComponent,
+        MyProfileComponent,
+        MapComponent,
+        FileLoadComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        FlexLayoutModule,
+        HttpClientModule,
+        RouterModule.forRoot(AppRoutes)
+    ],
+    providers: [{
+        provide: LocationStrategy,
+        useClass: HashLocationStrategy
+    }],
+    entryComponents: [
+        FileLoadComponent,
+        MyUsersCreateModalComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
