@@ -23,8 +23,11 @@ export * from './workspaces/logistics-courier/main/main.component';
 export * from './workspaces/logistics-courier/card/card.component';
 export * from './workspaces/logistics-courier/section/section.component';
 
-//starter
-export * from './workspaces/starter/starter.component';
+//my-starter
+export * from './workspaces/my-starter/my-starter.component';
+
+//logistics-starter
+export * from './workspaces/logistics-starter/logistics-starter.component';
 
 //layout
 export * from './layout/app/app.component';

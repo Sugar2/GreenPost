@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import {
     MyOrdersMainComponent,
-    StarterComponent,
+    MyStarterComponent,
     MyOrdersSectionComponent,
     MyOrdersCardComponent,
     MyProfileComponent,
@@ -16,16 +16,20 @@ import {
     LogisticsCourierSectionComponent,
     LogisticsCourierMainComponent,
     MyUsersMainComponent,
-    MyUsersSectionComponent
+    MyUsersSectionComponent,
+    LogisticsStarterComponent
 } from './components';
 
 export const AppRoutes: Routes = [{
     path: '',
-    redirectTo: 'starter',
+    redirectTo: 'my-starter',
     pathMatch: 'full'
 }, {
-    path: 'starter',
-    component: StarterComponent
+    path: 'my-starter',
+    component: MyStarterComponent
+}, {
+    path: 'logistics-starter',
+    component: LogisticsStarterComponent
 }, {
     path: 'my-profile',
     component: MyProfileComponent

@@ -17,11 +17,11 @@
     </mat-menu>
 </div>
 <mat-nav-list>
-    <mat-list-item [class.selected]="starter.isActive">
-        <a routerLink="/starter"
+    <mat-list-item [class.selected]="mystarter.isActive">
+        <a routerLink="/my-starter"
            routerLinkActive
-           [class.selected]="starter.isActive"
-           #starter="routerLinkActive">
+           [class.selected]="mystarter.isActive"
+           #mystarter="routerLinkActive">
             <mat-icon>dashboard</mat-icon>
             <span>Главная</span>
             <span fxFlex></span>
@@ -58,11 +58,11 @@
         </a>
     </mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item [class.selected]="starter.isActive">
-        <a routerLink="/starter"
+    <mat-list-item [class.selected]="logisticsstarter.isActive">
+        <a routerLink="/logistics-starter"
            routerLinkActive
-           [class.selected]="starter.isActive"
-           #starter="routerLinkActive">
+           [class.selected]="logisticsstarter.isActive"
+           #logisticsstarter="routerLinkActive">
             <mat-icon>dashboard</mat-icon>
             <span>Главная</span>
             <span fxFlex></span>
