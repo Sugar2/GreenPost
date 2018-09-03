@@ -58,7 +58,10 @@ export class MyOrdersCardComponent {
 }
 
 const data: TransactionModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'сделан' },
-    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'активен' },
-    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'в ожидании' }
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
+    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'В работе' },
+    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди' }
 ]

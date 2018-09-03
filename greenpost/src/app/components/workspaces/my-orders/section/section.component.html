@@ -1,41 +1,41 @@
-<mat-card fxLayoutGap="20px">
+<mat-card>
     <mat-card-header>
-        <mat-card-title>Фильтр</mat-card-title>
+        <mat-card-title>Поиск</mat-card-title>
     </mat-card-header>
-    <mat-card-content fxLayoutGap="20px">
-        <form>
-            <mat-form-field fxFlex="1 1 auto">
-                <input matInput placeholder="ТТН" value="123456">
-            </mat-form-field>
-            <mat-form-field fxFlex="1 1 auto">
-                <input matInput placeholder="Адрес" value="Маяковского 25">
-            </mat-form-field>
-
-            <mat-card fxLayoutGap="20px">
-                <mat-card-content fxLayoutGap="20px">
-                    <mat-form-field>
-                        <mat-chip-list #chipList>
-                            <mat-chip *ngFor="let phone of phones" [selectable]="selectable"
-                                      [removable]="removable" (removed)="remove(phone)">
-                                {{phone.name}}
-                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                            </mat-chip>
-                            <input placeholder="Добавить номер телефона..."
-                                   [matChipInputFor]="chipList"
-                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                   [matChipInputAddOnBlur]="addOnBlur"
-                                   (matChipInputTokenEnd)="add($event)">
-                        </mat-chip-list>
-                    </mat-form-field>
-                </mat-card-content>
-            </mat-card>
-            <mat-form-field fxFlex="1 1 auto">
-                <input matInput placeholder="Получатель" value="Ткачук Віталій">
-            </mat-form-field>
-        </form>
+    <mat-card-content fxLayoutGap="20px" fxLayout="row" fxLayout.lt-md="column">
+        <mat-form-field>
+            <input matInput placeholder="ТТН" [matAutocomplete]="ttn">
+        </mat-form-field>
+        <mat-autocomplete #ttn="matAutocomplete">
+            <mat-option>1</mat-option>
+            <mat-option>2</mat-option>
+            <mat-option>3</mat-option>
+            <mat-option>4</mat-option>
+            <mat-option>5</mat-option>
+            <mat-option>6</mat-option>
+        </mat-autocomplete>
+        <mat-form-field>
+            <input matInput placeholder="Адрес" [matAutocomplete]="address">
+        </mat-form-field>
+        <mat-autocomplete #address="matAutocomplete">
+            <mat-option>Маяковского 18</mat-option>
+            <mat-option>Лаврухина 7/1</mat-option>
+        </mat-autocomplete>
+        <mat-form-field>
+            <input matInput placeholder="Телефон" [matAutocomplete]="phone">
+        </mat-form-field>
+        <mat-autocomplete #phone="matAutocomplete">
+            <mat-option>+380975556501</mat-option>
+        </mat-autocomplete>
+        <mat-form-field>
+            <input matInput placeholder="Получатель" [matAutocomplete]="reciever">
+        </mat-form-field>
+        <mat-autocomplete #reciever="matAutocomplete">
+            <mat-option>Игорь Иванов</mat-option>
+        </mat-autocomplete>
     </mat-card-content>
 </mat-card>
-<mat-card fxLayoutGap="20px">
+<mat-card>
     <mat-card-header>
         <mat-card-title>Мои заказы</mat-card-title>
     </mat-card-header>
@@ -63,12 +63,12 @@
 
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
+                <mat-cell *matCellDef="let element" [style.color]="element.status == 'Активен' ? 'green' : 'red'"> {{element.status}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="price">
                 <mat-header-cell *matHeaderCellDef> Цена </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.price}} грн </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="type">
@@ -81,6 +81,5 @@
         </table>
     </mat-card-content>
 </mat-card>
-
 <button mat-fab color="warn" class="floating-button" matTooltip="Создать новый заказ" matTooltipPosition="left"><mat-icon>add</mat-icon></button>
 <button mat-fab color="primary" class="floating-button" matTooltip="Загрузить из файла" matTooltipPosition="left" [style.bottom]="'110px'" (click)="openBottomSheet()"><mat-icon>cloud_upload</mat-icon></button>

@@ -3,9 +3,12 @@
        routerLinkActive #section="routerLinkActive"
        [active]="section.isActive"
        routerLink="/my-orders/section">Все заказы</a>
+    <button mat-icon-button [disabled]="!card.isActive" color="primary"><mat-icon>chevron_left</mat-icon></button>
     <a mat-tab-link
        routerLinkActive #card="routerLinkActive"
        [active]="card.isActive"
-       routerLink="/my-orders/card">Детали</a>
+       [disabled]="!card.isActive"
+       routerLink="/my-orders/card">{{card.isActive ? 'Заказ №1' : 'Информация о заказе'}}</a>
+    <button mat-icon-button [disabled]="!card.isActive" color="primary"><mat-icon>chevron_right</mat-icon></button>
 </nav>
 <router-outlet></router-outlet>

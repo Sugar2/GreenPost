@@ -1,85 +1,81 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title class="order-info-transaction">Заказ №</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div fxLayout="row">
-            <div fxFlex="1 1 auto">
-                <div class="client-info-block">
-                    <span class="client-info-caption">Получатель</span>
-                    <br/>
-                    <span>Игорь Иванов</span>
-                </div>
-                <div class="client-info-block">
-                    <span class="client-info-caption">Статус</span>
-                    <br/>
-                    <span>Активен</span>
-                </div>
-            </div>
-            <span fxFlex></span>
-            <div fxFlex="1 1 auto">
-                <div class="client-info-block">
-                    <span class="client-info-caption">Адрес отправителя</span>
-                    <br/>
-                    <span>Маяковского 18</span>
-                </div>
-                <div class="client-info-block">
-                    <span class="client-info-caption">Адрес получателя</span>
-                    <br/>
-                    <span>Лаврухина 7</span>
-                </div>
-            </div>
-            <div fxFlex="1 1 auto">
-                <div class="client-info-block">
-                    <br/>
+<div fxLayout="column" fxLayout.gt-sm="row">
+    <mat-card fxFlex="2 2 auto">
+        <mat-card-header>
+            <mat-card-title>Основная информация</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-xs="20px">
+                <div fxFlex="1 1 auto" fxLayout="column">
                     <mat-form-field>
-                        <mat-select placeholder="Тип доставки">
-                            <mat-option *ngFor="let typeOfDelivery of typesOfDelivery" [value]="typeOfDelivery.value">
-                                {{typeOfDelivery.viewValue}}
-                            </mat-option>
+                        <input matInput placeholder="ТТН" value="1" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Получатель" value="Игорь Иванов" />
+                    </mat-form-field>
+                </div>
+                <div fxFlex="1 1 auto" fxLayout="column">
+                    <mat-form-field>
+                        <input matInput placeholder="Адрес отправителя" value="Маяковского 18" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Адрес получателя" value="Лаврухина 7" />
+                    </mat-form-field>
+                </div>
+                <div fxFlex="1 1 auto" fxLayout="column">
+                    <mat-form-field>
+                        <mat-select placeholder="Тип доставки" disabled>
+                            <mat-option>Стандарт</mat-option>
                         </mat-select>
                     </mat-form-field>
-                </div>
-            </div>
-            <span fxFlex></span>
-            <div fxFlex="1 1 auto">
-                <div class="client-info-block">
-                    <br/>
                     <mat-form-field>
-                        <mat-chip-list #chipList>
-                            <mat-chip *ngFor="let phone of phones" [selectable]="selectable"
-                                      [removable]="removable" (removed)="remove(phone)">
-                                {{phone.name}}
-                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                            </mat-chip>
-                            <input placeholder="Добавить номер телефона..."
-                                   [matChipInputFor]="chipList"
-                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                   [matChipInputAddOnBlur]="addOnBlur"
-                                   (matChipInputTokenEnd)="add($event)">
-                        </mat-chip-list>
+                        <input matInput placeholder="Комментарий" />
                     </mat-form-field>
                 </div>
+                <span fxFlex></span>
             </div>
-            <span fxFlex></span>
-        </div>
-
-
-    </mat-card-content>
-</mat-card>
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Карта</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+        </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex="1 1 auto">
+        <mat-card-header>
+            <mat-card-title>Средства связи</mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayout="column">
+            <mat-form-field>
+                <mat-chip-list #senders>
+                    <mat-chip *ngFor="let phone of phones" [selectable]="selectable"
+                              [removable]="removable" (removed)="remove(phone)">
+                        {{phone.name}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Контакты отправителя..."
+                           [matChipInputFor]="senders"
+                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                           [matChipInputAddOnBlur]="addOnBlur"
+                           (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-chip-list #recievers>
+                    <mat-chip *ngFor="let phone of phones" [selectable]="selectable"
+                              [removable]="removable" (removed)="remove(phone)">
+                        {{phone.name}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Контакты получателя..."
+                           [matChipInputFor]="recievers"
+                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                           [matChipInputAddOnBlur]="addOnBlur"
+                           (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+</div>
+<mat-card fxLayout="column" fxLayout.gt-sm="row">
+    <div fxFlex="1 1 auto">
         <gmap></gmap>
-    </mat-card-content>
-</mat-card>
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Статус доставки</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+    </div>
+    <div fxFlex="1 1 auto">
         <table mat-table [dataSource]="dataSource" fxFlex>
             <ng-container matColumnDef="id">
                 <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
@@ -104,7 +100,7 @@
             <mat-header-row *matHeaderRowDef="['id','from','to','status']"></mat-header-row>
             <mat-row *matRowDef="let element; columns: ['id','from','to','status'];"></mat-row>
         </table>
-    </mat-card-content>
+    </div>
 </mat-card>
 <button mat-fab color="accent" class="floating-button" matTooltip="Копировать заказ" matTooltipPosition="left">
     <mat-icon>library_add</mat-icon>
