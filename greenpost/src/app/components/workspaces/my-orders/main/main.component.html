@@ -2,16 +2,10 @@
     <a mat-tab-link
        routerLinkActive #section="routerLinkActive"
        [active]="section.isActive"
-       routerLink="/my-orders/section">All orders</a>
-    <button mat-icon-button color="primary">
-        <mat-icon>arrow_left</mat-icon>
-    </button>
+       routerLink="/my-orders/section">Все заказы</a>
     <a mat-tab-link
        routerLinkActive #card="routerLinkActive"
        [active]="card.isActive"
-       routerLink="/my-orders/card">Details</a>
-    <button mat-icon-button color="primary">
-        <mat-icon>arrow_right</mat-icon>
-    </button>
+       routerLink="/my-orders/card">Детали</a>
 </nav>
 <router-outlet></router-outlet>
