@@ -1,40 +1,53 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title class="order-info-transaction">Order no.1</mat-card-title>
+        <mat-card-title class="order-info-transaction">Заказ №</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <div fxLayout="row">
             <div fxFlex="1 1 auto">
                 <div class="client-info-block">
-                    <span class="client-info-caption">Reciever</span>
+                    <span class="client-info-caption">Получатель</span>
                     <br />
-                    <span>Igor Ivanov</span>
+                    <span>Игорь Иванов</span>
                 </div>
                 <div class="client-info-block">
-                    <span class="client-info-caption">Status</span>
+                    <span class="client-info-caption">Статус</span>
                     <br />
-                    <span>Active</span>
+                    <span>Активен</span>
                 </div>
             </div>
             <span fxFlex></span>
             <div fxFlex="1 1 auto">
                 <div class="client-info-block">
-                    <span class="client-info-caption">From</span>
+                    <span class="client-info-caption">Адрес отправителя</span>
                     <br />
-                    <span>Mayakovskoho 18</span>
+                    <span>Маяковского 18</span>
                 </div>
                 <div class="client-info-block">
-                    <span class="client-info-caption">To</span>
+                    <span class="client-info-caption">Адрес получателя</span>
                     <br />
-                    <span>Lavrukhina 7</span>
+                    <span>Лаврухина 7</span>
                 </div>
             </div>
+            <div fxFlex="1 1 auto">
+                <div class="client-info-block">
+                    <br />
+                    <mat-form-field>
+                        <mat-select placeholder="Тип доставки">
+                            <mat-option *ngFor="let typeOfDelivery of typesOfDelivery" [value]="typeOfDelivery.value">
+                                {{typeOfDelivery.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <span fxFlex></span>
         </div>
     </mat-card-content>
 </mat-card>
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Map</mat-card-title>
+        <mat-card-title>Карта</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <gmap></gmap>
@@ -42,27 +55,27 @@
 </mat-card>
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Delivery status</mat-card-title>
+        <mat-card-title>Статус доставки</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <table mat-table [dataSource]="dataSource" fxFlex>
             <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="from">
-                <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Адрес отправителя</mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.from}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="to">
-                <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Адрес получателя</mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.to}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="status">
-                <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
             </ng-container>
 
