@@ -24,7 +24,7 @@ export class LogisticsCourierSectionComponent {
         this.bottomSheet.open(FileLoadComponent);
     }
 
-    displayedColumns: string[] = ['select', 'from', 'to', 'reciever', 'status', 'price', 'typeOfOrder'];
+    displayedColumns: string[] = ['select', 'from', 'to', 'reciever', 'status', 'price', 'type'];
     selection = new SelectionModel<OrderModel>(true, []);
 
     /** Whether the number of selected elements matches the total number of rows. */
@@ -44,9 +44,9 @@ export class LogisticsCourierSectionComponent {
 }
 
 const data: OrderModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '222 UAH', typeOfOrder: 'экспресс'},
-    { id: 2, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '222 UAH', typeOfOrder: 'экспресс'},
-    { id: 3, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '222 UAH', typeOfOrder: 'экспресс'},
-    { id: 4, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '222 UAH', typeOfOrder: 'экспресс'},
-    { id: 5, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: '232 UAH', typeOfOrder: 'экспресс'}
+    { id: 1, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 222, type: 'экспресс'},
+    { id: 2, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 222, type: 'экспресс'},
+    { id: 3, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 222, type: 'экспресс'},
+    { id: 4, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 222, type: 'экспресс'},
+    { id: 5, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'экспресс'}
 ]
