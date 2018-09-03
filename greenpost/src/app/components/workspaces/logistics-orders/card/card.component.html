@@ -42,6 +42,26 @@
                 </div>
             </div>
             <span fxFlex></span>
+            <div fxFlex="1 1 auto">
+                <div class="client-info-block">
+                    <br/>
+                    <mat-form-field>
+                        <mat-chip-list #chipList>
+                            <mat-chip *ngFor="let phone of phones" [selectable]="selectable"
+                                      [removable]="removable" (removed)="remove(phone)">
+                                {{phone.name}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input placeholder="Добавить номер телефона..."
+                                   [matChipInputFor]="chipList"
+                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                   [matChipInputAddOnBlur]="addOnBlur"
+                                   (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+            </div>
+            <span fxFlex></span>
         </div>
     </mat-card-content>
 </mat-card>
