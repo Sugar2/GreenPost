@@ -73,7 +73,7 @@
 </div>
 <mat-card fxLayout="column" fxLayout.gt-sm="row">
     <div fxFlex="1 1 auto">
-        <gmap></gmap>
+        <gmap [markers] ="markers"></gmap>
     </div>
     <div fxFlex="1 1 auto">
         <table mat-table [dataSource]="dataSource" fxFlex>

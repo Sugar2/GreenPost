@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import { TransactionModel } from '../../../../models';
-import {MatChipInputEvent, MatTableDataSource} from '@angular/material';
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {PhoneMyOrdersCard} from "../../..";
+import { Component } from '@angular/core';
+import { TransactionModel, MapMarkerModel } from '../../../../models';
+import { MatChipInputEvent, MatTableDataSource } from '@angular/material';
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { PhoneMyOrdersCard } from "../../..";
 export interface TypesOfDelivery {
     value: string;
     viewValue: string;
@@ -11,18 +11,22 @@ export interface PhoneMyOrdersCard {
     name: string;
 }
 @Component({
-  selector: 'my-orders-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+    selector: 'my-orders-card',
+    templateUrl: './card.component.html',
+    styleUrls: ['./card.component.scss']
 })
 
 export class MyOrdersCardComponent {
     dataSource = new MatTableDataSource<TransactionModel>(data);
     typesOfDelivery: TypesOfDelivery[] = [
-        {value: 'standart-0', viewValue: 'Стандарт'},
-        {value: 'express-1', viewValue: 'Экспресс'}
+        { value: 'standart-0', viewValue: 'Стандарт' },
+        { value: 'express-1', viewValue: 'Экспресс' }
     ];
 
+    markers: MapMarkerModel[] = [
+        { lng: 30.593034, lat: 50.429108 },
+        { lng: 30.607346, lat: 50.523171 }
+    ];
 
     visible = true;
     selectable = true;
@@ -30,7 +34,7 @@ export class MyOrdersCardComponent {
     addOnBlur = true;
     readonly separatorKeysCodes: number[] = [ENTER, COMMA];
     phones: PhoneMyOrdersCard[] = [
-        {name: '+380990664449'},
+        { name: '+380990664449' },
     ];
 
     add(event: MatChipInputEvent): void {
@@ -39,7 +43,7 @@ export class MyOrdersCardComponent {
 
         // Add our fruit
         if ((value || '').trim()) {
-            this.phones.push({name: value.trim()});
+            this.phones.push({ name: value.trim() });
         }
 
         // Reset the input value
