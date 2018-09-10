@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {OrderModel} from '../../../../models';
-import { MatTableDataSource, MatBottomSheet } from '@angular/material';
+import {MatTableDataSource, MatBottomSheet, MatDialog} from '@angular/material';
 import { Router } from '@angular/router';
 import { FileLoadComponent } from '../../../widgets/file-load/file-load.component';
 import {SelectionModel} from '@angular/cdk/collections';
+import {LogisticsTransactionsCreateModalComponent, MyUsersCreateModalComponent} from "../../..";
 
 @Component({
     selector: 'logistics-transactions-section',
@@ -12,7 +13,7 @@ import {SelectionModel} from '@angular/cdk/collections';
 })
 
 export class LogisticsTransactionsSectionComponent {
-    constructor(private router: Router, private bottomSheet: MatBottomSheet) { }
+    constructor(private router: Router,public dialog: MatDialog, private bottomSheet: MatBottomSheet) { }
     dataSource = new MatTableDataSource<OrderModel>(data);
 
     openCard(rowId: number): void {
@@ -23,7 +24,7 @@ export class LogisticsTransactionsSectionComponent {
         this.bottomSheet.open(FileLoadComponent);
     }
 
-    displayedColumns: string[] = ['select', 'from', 'to', 'reciever', 'status', 'price', 'typeOfOrder'];
+    displayedColumns: string[] = ['select', 'from', 'to', 'reciever', 'status', 'price', 'type'];
     selection = new SelectionModel<OrderModel>(true, []);
 
     /** Whether the number of selected elements matches the total number of rows. */
@@ -40,6 +41,16 @@ export class LogisticsTransactionsSectionComponent {
             this.dataSource.data.forEach(row => this.selection.select(row));
     }
 
+    openCreateDialog(): void {
+        var dialogRef = this.dialog.open(LogisticsTransactionsCreateModalComponent, {
+            width: '500px',
+            data: {}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+
+        });
+    }
 
 }
 
