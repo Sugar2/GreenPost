@@ -33,6 +33,15 @@
                                   [checked]="selection.hasValue() && isAllSelected()"
                                   [indeterminate]="selection.hasValue() && !isAllSelected()">
                     </mat-checkbox>
+                    <button [matMenuTriggerFor]="profile" mat-button color="primary" >Выбрано: {{selection.selected.length}}</button>
+                    <mat-menu #profile="matMenu" class="mymegamenu">
+                        <button mat-menu-item (click)="openCreateDialog()">
+                            <mat-icon>directions_run</mat-icon> Назначить курьера
+                        </button>
+                    </mat-menu>
+
+
+
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
                     <mat-checkbox (click)="$event.stopPropagation()"
@@ -70,9 +79,9 @@
                 <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
             </ng-container>
             <!-- typeOfOrder Column -->
-            <ng-container matColumnDef="typeOfOrder">
+            <ng-container matColumnDef="type">
                 <mat-header-cell *matHeaderCellDef> Тип доставки </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.typeOfOrder}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
