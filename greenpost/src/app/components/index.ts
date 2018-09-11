@@ -17,6 +17,7 @@ export * from './workspaces/logistics-orders/section/section.component';
 export * from './workspaces/logistics-transactions/main/main.component';
 export * from './workspaces/logistics-transactions/card/card.component';
 export * from './workspaces/logistics-transactions/section/section.component';
+export * from './workspaces/logistics-transactions/create-modal/create-modal.component';
 
 //logistics-couriers
 export * from './workspaces/logistics-courier/main/main.component';

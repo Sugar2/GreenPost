@@ -4,7 +4,8 @@ import {MatTableDataSource, MatBottomSheet, MatDialog} from '@angular/material';
 import { Router } from '@angular/router';
 import { FileLoadComponent } from '../../../widgets/file-load/file-load.component';
 import {SelectionModel} from '@angular/cdk/collections';
-import {LogisticsTransactionsCreateModalComponent, MyUsersCreateModalComponent} from "../../..";
+import { MyUsersCreateModalComponent } from "../../..";
+import { LogisticsTransactionsCreateModalComponent } from "../create-modal/create-modal.component";
 
 @Component({
     selector: 'logistics-transactions-section',
