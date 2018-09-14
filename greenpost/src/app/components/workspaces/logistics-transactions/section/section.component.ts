@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {OrderModel} from '../../../../models';
+import {OrderModel, TakesModel, TransactionModel} from '../../../../models';
 import {MatTableDataSource, MatBottomSheet, MatDialog} from '@angular/material';
 import { Router } from '@angular/router';
 import { FileLoadComponent } from '../../../widgets/file-load/file-load.component';
@@ -15,7 +15,7 @@ import { LogisticsTransactionsCreateModalComponent } from "../create-modal/creat
 
 export class LogisticsTransactionsSectionComponent {
     constructor(private router: Router,public dialog: MatDialog, private bottomSheet: MatBottomSheet) { }
-    dataSource = new MatTableDataSource<OrderModel>(data);
+    dataSource = new MatTableDataSource<TransactionModel>(data);
 
     openCard(rowId: number): void {
         this.router.navigate(['logistics-transactions', 'card'])
@@ -25,8 +25,9 @@ export class LogisticsTransactionsSectionComponent {
         this.bottomSheet.open(FileLoadComponent);
     }
 
-    displayedColumns: string[] = ['select', 'from', 'to', 'reciever', 'status', 'price', 'type'];
-    selection = new SelectionModel<OrderModel>(true, []);
+    /*displayedColumns: string[] = ['select', 'from', 'to', 'reciever', 'status', 'price', 'type'];*/
+    displayedColumns: string[] = ['select', 'from', 'to', 'status'];
+    selection = new SelectionModel<TransactionModel>(true, []);
 
     /** Whether the number of selected elements matches the total number of rows. */
     isAllSelected() {
@@ -34,6 +35,7 @@ export class LogisticsTransactionsSectionComponent {
         const numRows = this.dataSource.data.length;
         return numSelected === numRows;
     }
+
 
     /** Selects all rows if they are not all selected; otherwise clear selection. */
     masterToggle() {
@@ -53,12 +55,32 @@ export class LogisticsTransactionsSectionComponent {
         });
     }
 
+    selectAllTake(row: TransactionModel) {
+         console.log(takes.filter(take => take.transactions.filter(tran => tran.id == row.id).length > 0)
+            .map(take => take.transactions));
+
+    }
+
 }
 
-const data: OrderModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'экспресс'},
-    { id: 2, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'экспресс'},
-    { id: 3, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'экспресс'},
-    { id: 4, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'экспресс'},
-    { id: 5, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'экспресс'}
+
+const takes: TakesModel[] = [
+    {id: 1, transactions:[{id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' }, {id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}, {id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}]},
+    {id: 2, transactions:[{id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}, {id: 5, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}, {id: 6, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}]}
+]
+
+/*const data: OrderModel[] = [
+    { id: 1, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
+    { id: 2, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
+    { id: 3, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
+    { id: 4, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
+    { id: 5, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'}
+]*/
+const data: TransactionModel[] = [
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
+    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
+    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
+    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
+    { id: 5, from: 'Склад 1', to: 'Склад 3', status: 'В работе' },
+    { id: 6, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди' }
 ]

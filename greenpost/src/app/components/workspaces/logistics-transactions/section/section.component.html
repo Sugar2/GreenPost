@@ -1,22 +1,25 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Фильтр</mat-card-title>
+        <mat-card-title>Поиск</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-        <form class="example-form">
-            <mat-form-field class="example" fxFlex="1 1 auto">
+    <mat-card-content fxLayoutGap="20px" fxLayout="row" fxLayout.lt-md="column">
+            <mat-form-field fxFlex="1 1 auto">
                 <input matInput placeholder="Курьер" value="Вася">
             </mat-form-field>
-            <mat-form-field class="example" fxFlex="1 1 auto">
+            <mat-form-field fxFlex="1 1 auto">
                 <input matInput placeholder="№ Заказа" value="A123">
             </mat-form-field>
-            <mat-form-field class="example" fxFlex="1 1 auto">
+            <mat-form-field fxFlex="1 1 auto">
                 <input matInput placeholder="Клиент" value="Нова Пошта">
             </mat-form-field>
-            <mat-form-field class="example" fxFlex="1 1 auto">
+            <mat-form-field fxFlex="1 1 auto">
                 <input matInput placeholder="Статус" value="сделан">
             </mat-form-field>
-        </form>
+            <mat-form-field fxFlex="1 1 auto">
+                <input matInput [matDatepicker]="picker" placeholder="Выберите дату">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
     </mat-card-content>
 </mat-card>
 <mat-card>
@@ -38,6 +41,12 @@
                         <button mat-menu-item (click)="openCreateDialog()">
                             <mat-icon>directions_run</mat-icon> Назначить курьера
                         </button>
+                        <button mat-menu-item>
+                            <mat-icon>assignment_ind</mat-icon> Переназначить курьера
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>highlight_off</mat-icon> Снять курьера
+                        </button>
                     </mat-menu>
 
 
@@ -46,48 +55,73 @@
                 <mat-cell *matCellDef="let row">
                     <mat-checkbox (click)="$event.stopPropagation()"
                                   (change)="$event ? selection.toggle(row) : null"
-                                  [checked]="selection.isSelected(row)">
+                                  [checked]="selection.isSelected(row)" (click)="selectAllTake(row)">
                     </mat-checkbox>
                 </mat-cell>
             </ng-container>
 
-            <!-- from Column -->
+<!--
+            &lt;!&ndash; from Column &ndash;&gt;
             <ng-container matColumnDef="from">
                 <mat-header-cell *matHeaderCellDef> Адрес отправителя </mat-header-cell>
                 <mat-cell mat-cell *matCellDef="let element"> {{element.from}} </mat-cell>
             </ng-container>
 
-            <!-- to Column -->
+            &lt;!&ndash; to Column &ndash;&gt;
             <ng-container matColumnDef="to">
                 <mat-header-cell *matHeaderCellDef> Адрес получателя </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.to}} </mat-cell>
             </ng-container>
 
-            <!-- reciever Column -->
+            &lt;!&ndash; reciever Column &ndash;&gt;
             <ng-container matColumnDef="reciever">
                 <mat-header-cell *matHeaderCellDef> Получатель </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.reciever}} </mat-cell>
             </ng-container>
-            <!-- status Column -->
+            &lt;!&ndash; status Column &ndash;&gt;
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef> Статус </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
             </ng-container>
-            <!-- price Column -->
+            &lt;!&ndash; price Column &ndash;&gt;
             <ng-container matColumnDef="price">
                 <mat-header-cell *matHeaderCellDef> Цена </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
             </ng-container>
-            <!-- typeOfOrder Column -->
+            &lt;!&ndash; typeOfOrder Column &ndash;&gt;
             <ng-container matColumnDef="type">
                 <mat-header-cell *matHeaderCellDef> Тип доставки </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
             </ng-container>
+-->
 
+
+
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="from">
+                <mat-header-cell *matHeaderCellDef>Адрес отправителя</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.from}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="to">
+                <mat-header-cell *matHeaderCellDef>Адрес получателя</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.to}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
+            </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"
                      (click)="selection.toggle(row)">
             </mat-row>
+<!--            <mat-header-row *matHeaderRowDef="['id','from','to','status']"></mat-header-row>
+            <mat-row *matRowDef="let element; columns: ['id','from','to','status'];"></mat-row>-->
         </table>
     </mat-card-content>
 </mat-card>
