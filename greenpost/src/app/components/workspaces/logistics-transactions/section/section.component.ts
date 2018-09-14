@@ -69,13 +69,6 @@ const takes: TakesModel[] = [
     {id: 2, transactions:[{id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}, {id: 5, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}, {id: 6, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}]}
 ]
 
-/*const data: OrderModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
-    { id: 2, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
-    { id: 3, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
-    { id: 4, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
-    { id: 5, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'}
-]*/
 const data: TransactionModel[] = [
     { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
     { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
