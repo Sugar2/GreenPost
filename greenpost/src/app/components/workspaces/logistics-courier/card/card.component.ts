@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import { TransactionModel } from '../../../../models';
-import { MatTableDataSource } from '@angular/material';
-import {TypesOfDelivery} from "../../..";
+import {MatChipInputEvent, MatTableDataSource} from '@angular/material';
+import {PhoneMyOrdersCard, TypesOfDelivery} from "../../..";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
 export interface TypesOfDeliveryCourier {
     value: string;
     viewValue: string;
@@ -18,6 +19,39 @@ export class LogisticsCourierCardComponent {
         {value: 'standart-0', viewValue: 'Стандарт'},
         {value: 'express-1', viewValue: 'Экспресс'}
     ];
+
+
+    visible = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    phones: PhoneMyOrdersCard[] = [
+        {name: '+380990664449'},
+    ];
+
+    add(event: MatChipInputEvent): void {
+        const input = event.input;
+        const value = event.value;
+
+        // Add our fruit
+        if ((value || '').trim()) {
+            this.phones.push({name: value.trim()});
+        }
+
+        // Reset the input value
+        if (input) {
+            input.value = '';
+        }
+    }
+
+    remove(phone: PhoneMyOrdersCard): void {
+        const index = this.phones.indexOf(phone);
+
+        if (index >= 0) {
+            this.phones.splice(index, 1);
+        }
+    }
 }
 
 const data: TransactionModel[] = [
