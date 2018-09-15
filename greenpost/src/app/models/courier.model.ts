@@ -1,12 +1,9 @@
 import { TransactionModel } from ".";
 
-export class OrderModel {
+export class CourierModel {
     public id: number;
-    public reciever: string;
     public from: string;
     public to: string;
     public status: string;
-    public price: number;
-    public type: string;
     public transactions: TransactionModel[];
 }

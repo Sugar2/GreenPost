@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {OrderModel, TakesModel, TransactionModel} from '../../../../models';
+import {OrderModel, TakeModel, TransactionModel} from '../../../../models';
 import {MatTableDataSource, MatBottomSheet, MatDialog} from '@angular/material';
 import { Router } from '@angular/router';
 import { FileLoadComponent } from '../../../widgets/file-load/file-load.component';
@@ -63,17 +63,16 @@ export class LogisticsTransactionsSectionComponent {
 
 }
 
-
-const takes: TakesModel[] = [
-    {id: 1, transactions:[{id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' }, {id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}, {id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}]},
-    {id: 2, transactions:[{id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}, {id: 5, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}, {id: 6, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен'}]}
+const takes: TakeModel[] = [
+    { id: 1, transactions: []},
+    { id: 2, transactions:[]}
 ]
 
 const data: TransactionModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
-    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
-    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
-    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
-    { id: 5, from: 'Склад 1', to: 'Склад 3', status: 'В работе' },
-    { id: 6, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди' }
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 2, order: null, courier: null, take: takes[0] },
+    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 3, order: null, courier: null, take: takes[0] },
+    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: null, order: null, courier: null, take: takes[0] },
+    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 5, order: null, courier: null, take: takes[1] },
+    { id: 5, from: 'Склад 1', to: 'Склад 3', status: 'В работе', next: null, nextId: 6, order: null, courier: null, take: takes[1] },
+    { id: 6, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', next: null, nextId: null, order: null, courier: null, take: takes[1] }
 ]

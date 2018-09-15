@@ -62,10 +62,10 @@ export class MyOrdersCardComponent {
 }
 
 const data: TransactionModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен' },
-    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'В работе' },
-    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди' }
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 2, order: null, courier: null, take: null },
+    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 3, order: null, courier: null, take: null },
+    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 4, order: null, courier: null, take: null },
+    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 5, order: null, courier: null, take: null },
+    { id: 5, from: 'Склад 1', to: 'Склад 3', status: 'В работе', next: null, nextId: 6, order: null, courier: null, take: null },
+    { id: 6, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', next: null, nextId: null, order: null, courier: null, take: null }
 ]

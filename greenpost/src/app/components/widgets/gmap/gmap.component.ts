@@ -5,8 +5,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'gmap',
-    templateUrl: './map.component.html',
-    styleUrls: ['./map.component.scss']
+    templateUrl: './gmap.component.html',
+    styleUrls: ['./gmap.component.scss']
 })
 
 export class MapComponent {
