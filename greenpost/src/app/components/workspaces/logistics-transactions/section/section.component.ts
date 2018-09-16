@@ -63,16 +63,24 @@ export class LogisticsTransactionsSectionComponent {
 
 }
 
+
 const takes: TakeModel[] = [
-    { id: 1, transactions: []},
-    { id: 2, transactions:[]}
+    {id: 1, transactions:[{id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}, {id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}, {id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}]},
+    {id: 2, transactions:[{id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}, {id: 5, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}, {id: 6, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}]}
 ]
 
+/*const data: OrderModel[] = [
+    { id: 1, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
+    { id: 2, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
+    { id: 3, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
+    { id: 4, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'},
+    { id: 5, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс'}
+]*/
 const data: TransactionModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 2, order: null, courier: null, take: takes[0] },
-    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 3, order: null, courier: null, take: takes[0] },
-    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: null, order: null, courier: null, take: takes[0] },
-    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 5, order: null, courier: null, take: takes[1] },
-    { id: 5, from: 'Склад 1', to: 'Склад 3', status: 'В работе', next: null, nextId: 6, order: null, courier: null, take: takes[1] },
-    { id: 6, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', next: null, nextId: null, order: null, courier: null, take: takes[1] }
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null},
+    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 2, order: null, courierId: 2, courier: null, takeId: 2, take: null},
+    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 3, order: null, courierId: 3, courier: null, takeId: 3, take: null},
+    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 4, order: null, courierId: 4, courier: null, takeId: 4, take: null},
+    { id: 5, from: 'Склад 1', to: 'Склад 3', status: 'В работе', nextId: 1, next: null, orderId: 5, order: null, courierId: 5, courier: null, takeId: 5, take: null},
+    { id: 6, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', nextId: 1, next: null, orderId: 6, order: null, courierId: 6, courier: null, takeId: 6, take: null}
 ]
