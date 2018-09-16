@@ -8,9 +8,9 @@ export interface TypesOfDeliveryCourier {
     viewValue: string;
 }
 @Component({
-  selector: 'logistics-courier-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+    selector: 'logistics-courier-card',
+    templateUrl: './card.component.html',
+    styleUrls: ['./card.component.scss']
 })
 
 export class LogisticsCourierCardComponent {
@@ -55,7 +55,7 @@ export class LogisticsCourierCardComponent {
 }
 
 const data: TransactionModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'сделан', next: null, nextId: 2, order: null, courier: null, take: null },
-    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'активен', next: null, nextId: 3, order: null, courier: null, take: null },
-    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'в ожидании', next: null, nextId: null, order: null, courier: null, take: null }
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'сделан', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null},
+    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'активен', nextId: 2, next: null, orderId: 2, order: null, courierId: 1, courier: null, takeId: 2, take: null},
+    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'в ожидании', nextId: 3, next: null, orderId: 3, order: null, courierId: 1, courier: null, takeId: 3, take: null}
 ]
