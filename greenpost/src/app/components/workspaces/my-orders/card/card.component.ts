@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { TransactionModel, MapMarkerModel } from '../../../../models';
-import { MatChipInputEvent, MatTableDataSource } from '@angular/material';
-import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { PhoneMyOrdersCard } from "../../..";
+import {Component} from '@angular/core';
+import { TransactionModel } from '../../../../models';
+import {MatChipInputEvent, MatTableDataSource} from '@angular/material';
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {PhoneMyOrdersCard} from "../../..";
+import {MapMarkerModel} from "../../../../models/map.marker.model";
 export interface TypesOfDelivery {
     value: string;
     viewValue: string;
@@ -19,8 +20,8 @@ export interface PhoneMyOrdersCard {
 export class MyOrdersCardComponent {
     dataSource = new MatTableDataSource<TransactionModel>(data);
     typesOfDelivery: TypesOfDelivery[] = [
-        { value: 'standart-0', viewValue: 'Стандарт' },
-        { value: 'express-1', viewValue: 'Экспресс' }
+        {value: 'standart-0', viewValue: 'Стандарт'},
+        {value: 'express-1', viewValue: 'Экспресс'}
     ];
 
     markers: MapMarkerModel[] = [
@@ -34,7 +35,7 @@ export class MyOrdersCardComponent {
     addOnBlur = true;
     readonly separatorKeysCodes: number[] = [ENTER, COMMA];
     phones: PhoneMyOrdersCard[] = [
-        { name: '+380990664449' },
+        {name: '+380990664449'},
     ];
 
     add(event: MatChipInputEvent): void {
@@ -43,7 +44,7 @@ export class MyOrdersCardComponent {
 
         // Add our fruit
         if ((value || '').trim()) {
-            this.phones.push({ name: value.trim() });
+            this.phones.push({name: value.trim()});
         }
 
         // Reset the input value
@@ -59,13 +60,18 @@ export class MyOrdersCardComponent {
             this.phones.splice(index, 1);
         }
     }
+
+
+
 }
 
 const data: TransactionModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 2, order: null, courier: null, take: null },
-    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 3, order: null, courier: null, take: null },
-    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 4, order: null, courier: null, take: null },
-    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', next: null, nextId: 5, order: null, courier: null, take: null },
-    { id: 5, from: 'Склад 1', to: 'Склад 3', status: 'В работе', next: null, nextId: 6, order: null, courier: null, take: null },
-    { id: 6, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', next: null, nextId: null, order: null, courier: null, take: null }
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'сделан', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null},
+    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'активен', nextId: 2, next: null, orderId: 2, order: null, courierId: 1, courier: null, takeId: 2, take: null},
+    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'в ожидании', nextId: 3, next: null, orderId: 3, order: null, courierId: 1, courier: null, takeId: 3, take: null}
+]
+
+let marker: MapMarkerModel[] = [
+    {lat: 50.445158, lng: 30.518164},
+    {lat: 50.411335, lng: 30.526813}
 ]
