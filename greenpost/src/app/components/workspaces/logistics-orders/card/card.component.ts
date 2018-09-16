@@ -58,7 +58,7 @@ export class LogisticsOrdersCardComponent {
 }
 
 const data: TransactionModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'сделан', courier: null, order: null, take: null, next: null, nextId: 2 },
-    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'активен', courier: null, order: null, take: null, next: null, nextId: 3 },
-    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'в ожидании', courier: null, order: null, take: null, next: null, nextId: null }
+    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'сделан', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null},
+    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'активен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null},
+    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'в ожидании', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}
 ]
