@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OrderModel, TakeModel, TransactionModel} from '../../../../models';
-import {MatTableDataSource, MatBottomSheet, MatDialog} from '@angular/material';
+import {MatTableDataSource, MatBottomSheet, MatDialog, MatSnackBar} from '@angular/material';
 import { Router } from '@angular/router';
 import { FileLoadComponent } from '../../../widgets/file-load/file-load.component';
 import {SelectionModel} from '@angular/cdk/collections';
@@ -22,32 +22,73 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
                 opacity: 1,
                 transform: 'translateX(0)'
             })),
-            transition('inactive => active', animate('120ms ease-in')),
-            transition('active => inactive', animate('200ms ease-out'))
+            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
         ]),
-
+        trigger('detailExpand', [
+            state('collapsed', style({ height: '0px', minHeight: '0', display: 'none', opacity: 0 })),
+            state('expanded', style({ })),
+            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
     ]
 })
 
-export class LogisticsTransactionsSectionComponent {
-    constructor(private router: Router,public dialog: MatDialog) { }
-    dataSource = new MatTableDataSource<TransactionModel>(data);
-
+export class LogisticsTransactionsSectionComponent implements OnInit {
+    constructor(private router: Router, public dialog: MatDialog, private snackBar: MatSnackBar) { }
+    dataSource: MatTableDataSource<TransactionModel | TakeModel>;
+    expandedElement: TransactionModel | TakeModel;
     openCard(rowId: number): void {
         this.router.navigate(['logistics-transactions', 'card'])
     }
-    
-    selection = new SelectionModel<TransactionModel>(true, []);
 
-    /** Whether the number of selected elements matches the total number of rows. */
+    ngOnInit() {
+        let rows = (<(TransactionModel | TakeModel)[]>data).concat(takes);
+        rows.forEach((row: any) => {
+            if (this.isTake(row)) {
+                row.transactions = rows.filter((r: any) => r.takeId == row.id);
+            } else {
+                let takes = rows.filter((r: any) => r.id == row.takeId);
+                row.take = takes && takes.length > 0 ? takes[0] : null;
+            }
+        });
+        this.dataSource = new MatTableDataSource<TransactionModel | TakeModel>(rows.sort((a, b) => a.id - b.id));
+    }
+
+    getDataLength() {
+        return this.dataSource.data.filter((r: any) => this.isTransaction(r)).length;
+    }
+
+    selection = new SelectionModel<TransactionModel | TakeModel>(true, []);
+    
     isAllSelected() {
         const numSelected = this.selection.selected.length;
         const numRows = this.dataSource.data.length;
         return numSelected === numRows;
     }
 
+    isTakeSomeSelected(row: TakeModel) {
+        return this.selection.selected.filter((r: any) => r.take && r.take.id == row.id).length > 0;
+    }
 
-    /** Selects all rows if they are not all selected; otherwise clear selection. */
+    isTakeSelected(row: TakeModel) {
+        const numSelected = this.selection.selected.filter((r: any) => r.take && r.take.id == row.id).length;
+        const numRows = this.dataSource.data.filter((r: any) => r.take && r.take.id == row.id).length;
+        return numSelected === numRows;
+    }
+
+    isTake(row: any): boolean {
+        return row.transactions;
+    }
+
+    isTransaction(row: any): boolean {
+        return !row.transactions;
+    }
+
+    takeToggle(row: TakeModel) {
+        this.isTakeSelected(row) ?
+            this.dataSource.data.filter((r: any) => r.take && r.take.id == row.id).forEach(row => this.selection.deselect(row)) :
+            this.dataSource.data.filter((r: any) => r.take && r.take.id == row.id).forEach(row => this.selection.select(row));
+    }
+
     masterToggle() {
         this.isAllSelected() ?
             this.selection.clear() :
@@ -61,30 +102,26 @@ export class LogisticsTransactionsSectionComponent {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-
+            this.snackBar.open("Курьер успешно назначен");
         });
     }
 
-    selectAllTake(row: TransactionModel) {
-        this.selection.select(row);
-         console.log(takes.filter(take => take.transactions.filter(tran => tran.id == row.id).length > 0)
-            .map(take => take.transactions));
-
+    toggleTake(row: TransactionModel | TakeModel) {
+        this.selection.toggle(row);
     }
-
 }
 
 
 const takes: TakeModel[] = [
-    {id: 1, transactions:[{id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}, {id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}, {id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}]},
-    {id: 2, transactions:[{id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}, {id: 5, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}, {id: 6, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null}]}
+    {id: 1, transactions:[]},
+    {id: 6, transactions:[]}
 ]
 
 const data: TransactionModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: { id: 1, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null },
-    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 2, order: null, courierId: 2, courier: { id: 2, name: "Вася", status: "Active", transactions: [] }, takeId: 2, take: null},
-    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 3, order: null, courierId: 3, courier: { id: 3, name: "Вася", status: "Active", transactions: [] }, takeId: 3, take: null},
-    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 4, order: null, courierId: null, courier: null, takeId: 4, take: null},
-    { id: 5, from: 'Склад 1', to: 'Склад 3', status: 'В работе', nextId: 1, next: null, orderId: 5, order: null, courierId: null, courier: null, takeId: 5, take: null},
-    { id: 6, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', nextId: 1, next: null, orderId: 6, order: null, courierId: null, courier: null, takeId: 6, take: null}
+    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: { id: 1, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null },
+    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 2, order: null, courierId: 2, courier: { id: 2, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null},
+    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 3, order: null, courierId: 3, courier: { id: 3, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null},
+    { id: 5, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 4, order: null, courierId: null, courier: null, takeId: 1, take: null},
+    { id: 7, from: 'Склад 1', to: 'Склад 3', status: 'В работе', nextId: 1, next: null, orderId: 5, order: null, courierId: null, courier: null, takeId: 6, take: null},
+    { id: 8, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', nextId: 1, next: null, orderId: 6, order: null, courierId: null, courier: null, takeId: null, take: null}
 ]

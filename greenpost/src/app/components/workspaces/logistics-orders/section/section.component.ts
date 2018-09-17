@@ -19,7 +19,7 @@ export class LogisticsOrdersSectionComponent {
     dataSource = new MatTableDataSource<OrderModel>(data);
 
     openCard(rowId: number): void {
-        this.router.navigate(['my-orders', 'card'])
+        this.router.navigate(['logistics-orders', 'card'])
     }
 
     openBottomSheet(): void {

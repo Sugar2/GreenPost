@@ -4,7 +4,7 @@
             <mat-card-title>
                 Перевозки
                 <span [@actions]="selection.selected.length > 0 ? 'active' : 'inactive'">
-                    (выбрано {{selection.selected.length}}/{{dataSource.data.length}})
+                    (выбрано {{selection.selected.length}}/{{getDataLength()}})
                 </span>
             </mat-card-title>
         </mat-card-header>
@@ -31,33 +31,32 @@
         </mat-card-content>
     </mat-card>
     <mat-card>
-        <table mat-table [dataSource]="dataSource" fxFlex>
+        <table mat-table [dataSource]="dataSource" fxFlex multiTemplateDataRows>
+
             <ng-container matColumnDef="select">
-                <mat-header-cell *matHeaderCellDef fxLayoutGap="20px">
+                <mat-header-cell *matHeaderCellDef>
                     <mat-checkbox (change)="$event ? masterToggle() : null"
                                   [checked]="selection.hasValue() && isAllSelected()"
                                   [indeterminate]="selection.hasValue() && !isAllSelected()">
                     </mat-checkbox>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                    <mat-checkbox (change)="$event ? selection.toggle(row) : null"
-                                  [checked]="selection.isSelected(row)" (click)="selectAllTake(row)">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event && isTake(row) ? takeToggle(row) : null"
+                                  [checked]="isTransaction(row) ? selection.isSelected(row) : isTakeSomeSelected(row) && isTakeSelected(row)"
+                                  [indeterminate]="isTake(row) && isTakeSomeSelected(row) && !isTakeSelected(row)">
                     </mat-checkbox>
                 </mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="from">
                 <mat-header-cell *matHeaderCellDef>Адрес отправителя</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.from}}</mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.from ? element.from : element.transactions && element.transactions.length ? element.transactions[0].from : ''}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="to">
                 <mat-header-cell *matHeaderCellDef>Адрес получателя</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.to}}</mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.to ? element.to : ''}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="courier">
@@ -70,16 +69,17 @@
                 <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="['select', 'from', 'to', 'status', 'courier']"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: ['select', 'from', 'to', 'status', 'courier'];"
-                     (click)="selection.toggle(row)">
-            </mat-row>
+            <mat-row *matRowDef="let row; columns: ['select', 'from', 'to', 'status', 'courier']"
+                     [class.clickable-row]="isTake(row)"
+                     [@detailExpand]="!row.take || row.take == expandedElement ? 'expanded' : 'collapsed'"
+                     (click)="isTake(row) ? (expandedElement = expandedElement == row ? null : row) : selection.toggle(row)"></mat-row>
         </table>
     </mat-card>
 </div>
 
-<button [@actions]="selection.selected.length > 0 ? 'active' : 'inactive'"
+<button [@actions]="selection.hasValue() ? 'active' : 'inactive'"
         mat-fab color="accent" class="floating-button" matTooltip="Назначить курьера"
         matTooltipPosition="left" (click)="openCreateDialog()"><mat-icon>create</mat-icon></button>
-<button [@actions]="selection.selected.length > 0 ? 'active' : 'inactive'"
+<button [@actions]="selection.hasValue() ? 'active' : 'inactive'"
         mat-fab color="warn" class="floating-button" matTooltip="Снять курьера"
         matTooltipPosition="left" [style.bottom]="'110px'"><mat-icon>clear</mat-icon></button>
