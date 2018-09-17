@@ -1,58 +1,71 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Инфо про компанию(едрпоу, название, адрес, контакты и т.д.)</mat-card-title>
-    </mat-card-header>
-</mat-card>
 <div fxLayout="row">
     <mat-card fxFlex="1 1 auto">
         <mat-card-header>
             <mat-card-title>
-                <mat-icon class="icon-done">done</mat-icon>
-                <br />Заказов доставлено
-                <br />6806
+                <mat-icon color="primary" class="icon-done">done</mat-icon>
+                <br />Заказов выполнено
+                <br />124
             </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-
-        </mat-card-content>
     </mat-card>
     <mat-card fxFlex="1 1 auto">
         <mat-card-header>
             <mat-card-title>
-                <mat-icon class="icon-done">directions_run</mat-icon>
-                <br />Курьеров в компании
-                <br />68
+                <mat-icon color="warn" class="icon-done">directions_run</mat-icon>
+                <br />Активных заказов
+                <br />3
             </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-
-        </mat-card-content>
     </mat-card>
     <mat-card fxFlex="1 1 auto">
         <mat-card-header>
             <mat-card-title>
-                <mat-icon class="icon-done">filter_9_plus</mat-icon>
-                <br />Больше 9 лет на рынке
+                <mat-icon color="accent" class="icon-done">access_time</mat-icon>
+                <br />Онлайн поддержка
+                <br />с 10:00 до 20:00
             </mat-card-title>
         </mat-card-header>
+    </mat-card>
+</div>
+<div fxLayout="row">
+    <mat-card fxFlex="1 1 auto">
+        <mat-card-header>
+            <mat-card-title>Последние новости</mat-card-title>
+        </mat-card-header>
         <mat-card-content>
-
+            <table mat-table [dataSource]="newsDataSource" fxFlex>
+                <ng-container matColumnDef="date">
+                    <mat-header-cell *matHeaderCellDef>Дата</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.date | date:"dd.MM.yyyy"}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="content">
+                    <mat-header-cell *matHeaderCellDef>Текст</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.content}}</mat-cell>
+                </ng-container>
+                <mat-row class="clickable-row" *matRowDef="let element; columns: ['date', 'content'];"></mat-row>
+            </table>
         </mat-card-content>
     </mat-card>
     <mat-card fxFlex="1 1 auto">
         <mat-card-header>
-            <mat-card-title>
-                <mat-icon class="icon-done">access_time</mat-icon>
-                <br />Режим работы с 10:00 до 20:00
-            </mat-card-title>
+            <mat-card-title>Последние действия</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-
+            <table mat-table [dataSource]="actionsDataSource" fxFlex>
+                <ng-container matColumnDef="date">
+                    <mat-header-cell *matHeaderCellDef>Дата</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.date | date:"dd.MM.yyyy"}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="content">
+                    <mat-header-cell *matHeaderCellDef>Текст</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.content}}</mat-cell>
+                </ng-container>
+                <mat-row class="clickable-row" *matRowDef="let element; columns: ['date', 'content'];"></mat-row>
+            </table>
         </mat-card-content>
     </mat-card>
 </div>
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Новости, новинки, акции</mat-card-title>
-    </mat-card-header>
-</mat-card>
+<button mat-fab color="warn" class="floating-button" matTooltip="Создать новый заказ" matTooltipPosition="left"><mat-icon>add</mat-icon></button>
+<button mat-fab color="primary" class="floating-button" matTooltip="Добавить пользователя" matTooltipPosition="left" [style.bottom]="'110px'"><mat-icon>person_add</mat-icon></button>
+<button mat-fab color="accent" class="floating-button" matTooltip="Найти заказ" matTooltipPosition="left" [style.bottom]="'175px'"><mat-icon>search</mat-icon></button>
+<button mat-fab color="primary" class="floating-button" matTooltip="Добавить точку вывоза" matTooltipPosition="left" [style.bottom]="'240px'"><mat-icon>add_location</mat-icon></button>

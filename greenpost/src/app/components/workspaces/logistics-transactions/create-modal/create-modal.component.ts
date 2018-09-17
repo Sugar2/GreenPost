@@ -10,6 +10,4 @@ import { UserRoleModel } from '../../../../models';
 })
 export class LogisticsTransactionsCreateModalComponent {
     constructor(public dialogRef: MatDialogRef<LogisticsTransactionsCreateModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
-    allRoles: UserRoleModel[] = [{ id: '1', name: 'Ìåíåäæåð' }, { id: '2', name: 'Ðóêîâîäèòåëü' }];
-    selected = "Василий Васкин"
 }

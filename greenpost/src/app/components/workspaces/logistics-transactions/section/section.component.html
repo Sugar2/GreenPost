@@ -1,60 +1,46 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Поиск</mat-card-title>
-    </mat-card-header>
-    <mat-card-content fxLayoutGap="20px" fxLayout="row" fxLayout.lt-md="column">
+<div fxLayout="column" fxLayoutGap="0px">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Перевозки
+                <span [@actions]="selection.selected.length > 0 ? 'active' : 'inactive'">
+                    (выбрано {{selection.selected.length}}/{{dataSource.data.length}})
+                </span>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayoutGap="20px" fxLayout="row" fxLayout.lt-md="column">
             <mat-form-field fxFlex="1 1 auto">
                 <input matInput placeholder="Курьер" value="Вася">
             </mat-form-field>
             <mat-form-field fxFlex="1 1 auto">
-                <input matInput placeholder="№ Заказа" value="A123">
-            </mat-form-field>
-            <mat-form-field fxFlex="1 1 auto">
-                <input matInput placeholder="Клиент" value="Нова Пошта">
+                <input matInput placeholder="ТТН или клиент" value="A123">
             </mat-form-field>
             <mat-form-field fxFlex="1 1 auto">
                 <input matInput placeholder="Статус" value="сделан">
             </mat-form-field>
             <mat-form-field fxFlex="1 1 auto">
-                <input matInput [matDatepicker]="picker" placeholder="Выберите дату">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <input matInput [matDatepicker]="from" placeholder="Дата с">
+                <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+                <mat-datepicker #from></mat-datepicker>
             </mat-form-field>
-    </mat-card-content>
-</mat-card>
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Мои заказы</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+            <mat-form-field fxFlex="1 1 auto">
+                <input matInput [matDatepicker]="to" placeholder="Дата по">
+                <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+                <mat-datepicker #to></mat-datepicker>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
         <table mat-table [dataSource]="dataSource" fxFlex>
-
-            <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
-                <mat-header-cell *matHeaderCellDef>
+                <mat-header-cell *matHeaderCellDef fxLayoutGap="20px">
                     <mat-checkbox (change)="$event ? masterToggle() : null"
                                   [checked]="selection.hasValue() && isAllSelected()"
                                   [indeterminate]="selection.hasValue() && !isAllSelected()">
                     </mat-checkbox>
-                    <button [matMenuTriggerFor]="profile" mat-button color="primary" >Выбрано: {{selection.selected.length}}</button>
-                    <mat-menu #profile="matMenu" class="mymegamenu">
-                        <button mat-menu-item (click)="openCreateDialog()">
-                            <mat-icon>directions_run</mat-icon> Назначить курьера
-                        </button>
-                        <button mat-menu-item>
-                            <mat-icon>assignment_ind</mat-icon> Переназначить курьера
-                        </button>
-                        <button mat-menu-item>
-                            <mat-icon>highlight_off</mat-icon> Снять курьера
-                        </button>
-                    </mat-menu>
-
-
-
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                    <mat-checkbox (click)="$event.stopPropagation()"
-                                  (change)="$event ? selection.toggle(row) : null"
+                    <mat-checkbox (change)="$event ? selection.toggle(row) : null"
                                   [checked]="selection.isSelected(row)" (click)="selectAllTake(row)">
                     </mat-checkbox>
                 </mat-cell>
@@ -74,18 +60,26 @@
                 <mat-cell *matCellDef="let element"> {{element.to}}</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="courier">
+                <mat-header-cell *matHeaderCellDef>Курьер</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.courier ? element.courier.name : ''}}</mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
             </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"
+            <mat-header-row *matHeaderRowDef="['select', 'from', 'to', 'status', 'courier']"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['select', 'from', 'to', 'status', 'courier'];"
                      (click)="selection.toggle(row)">
             </mat-row>
         </table>
-    </mat-card-content>
-</mat-card>
+    </mat-card>
+</div>
 
-<button mat-fab color="warn" class="floating-button" matTooltip="Create new order" matTooltipPosition="left"><mat-icon>add</mat-icon></button>
-<button mat-fab color="primary" class="floating-button" matTooltip="Load from file" matTooltipPosition="left" [style.bottom]="'110px'" (click)="openBottomSheet()"><mat-icon>cloud_upload</mat-icon></button>
-<button mat-fab color="primary" class="floating-button" matTooltip="Копировать заказ" matTooltipPosition="left" [style.bottom]="'175px'"><mat-icon>library_add</mat-icon></button>
+<button [@actions]="selection.selected.length > 0 ? 'active' : 'inactive'"
+        mat-fab color="accent" class="floating-button" matTooltip="Назначить курьера"
+        matTooltipPosition="left" (click)="openCreateDialog()"><mat-icon>create</mat-icon></button>
+<button [@actions]="selection.selected.length > 0 ? 'active' : 'inactive'"
+        mat-fab color="warn" class="floating-button" matTooltip="Снять курьера"
+        matTooltipPosition="left" [style.bottom]="'110px'"><mat-icon>clear</mat-icon></button>
