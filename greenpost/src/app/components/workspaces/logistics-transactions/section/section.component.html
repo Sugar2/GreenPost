@@ -31,6 +31,18 @@
         </mat-card-content>
     </mat-card>
     <mat-card>
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Карта
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <gmap></gmap>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card>
+    <mat-card>
         <table mat-table [dataSource]="dataSource" fxFlex multiTemplateDataRows>
 
             <ng-container matColumnDef="select">

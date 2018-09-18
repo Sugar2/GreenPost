@@ -58,13 +58,14 @@ export class MapComponent {
             strokeWeight: 2
         });
         flightPath.setMap(this.map);
-        this.markers.forEach(marker => {
-            let gMarker = new google.maps.Marker({
-                position: { lat: marker.lat, lng: marker.lng },
-                map: this.map,
-                title: ''
-            });
-            gMarker.setMap(this.map);
-        });     
+        if (this.markers && this.markers.length > 0)
+            this.markers.forEach(marker => {
+                let gMarker = new google.maps.Marker({
+                    position: { lat: marker.lat, lng: marker.lng },
+                    map: this.map,
+                    title: ''
+                });
+                gMarker.setMap(this.map);
+            });     
     }
 }

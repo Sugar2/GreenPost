@@ -20,9 +20,9 @@ export * from './workspaces/logistics-transactions/section/section.component';
 export * from './workspaces/logistics-transactions/create-modal/create-modal.component';
 
 //logistics-couriers
-export * from './workspaces/logistics-courier/main/main.component';
-export * from './workspaces/logistics-courier/card/card.component';
-export * from './workspaces/logistics-courier/section/section.component';
+export * from './workspaces/logistics-couriers/main/main.component';
+export * from './workspaces/logistics-couriers/card/card.component';
+export * from './workspaces/logistics-couriers/section/section.component';
 
 //my-starter
 export * from './workspaces/my-starter/my-starter.component';
