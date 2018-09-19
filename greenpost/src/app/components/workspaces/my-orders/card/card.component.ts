@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
-import { TransactionModel } from '../../../../models';
+import {Component, OnInit} from '@angular/core';
+import {OrderModel, TransactionModel} from '../../../../models';
 import {MatChipInputEvent, MatTableDataSource} from '@angular/material';
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {PhoneMyOrdersCard} from "../../..";
 import {MapMarkerModel} from "../../../../models/map.marker.model";
+import {QueryService} from "../../../../services/query.service";
 export interface TypesOfDelivery {
     value: string;
     viewValue: string;
@@ -17,7 +18,23 @@ export interface PhoneMyOrdersCard {
     styleUrls: ['./card.component.scss']
 })
 
-export class MyOrdersCardComponent {
+export class MyOrdersCardComponent implements OnInit{
+
+
+    order: OrderModel;
+    constructor(private query: QueryService) {
+
+    }
+
+    ngOnInit() {
+      let order$ = this.query.orders.one(1);
+      order$.subscribe(o => {
+          debugger;//перевірити чи правцює, пофіксити
+          this.order = o;
+      }); //order$ - Observable, order - OrderModel, через асинхронність ф-ції робимо через callbackfunc
+    }
+
+
     dataSource = new MatTableDataSource<TransactionModel>(data);
     typesOfDelivery: TypesOfDelivery[] = [
         {value: 'standart-0', viewValue: 'Стандарт'},
