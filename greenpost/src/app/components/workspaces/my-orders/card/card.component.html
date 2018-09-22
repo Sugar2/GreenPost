@@ -15,10 +15,10 @@
                 </div>
                 <div fxFlex="1 1 auto" fxLayout="column">
                     <mat-form-field>
-                        <input matInput placeholder="Адрес отправителя" value="Маяковского 18" />
+                        <input matInput placeholder="Адрес отправителя" value="{{order.from}}" />
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Адрес получателя" value="Лаврухина 7" />
+                        <input matInput placeholder="Адрес получателя" value="{{order.to}}" />
                     </mat-form-field>
                 </div>
                 <div fxFlex="1 1 auto" fxLayout="column">
@@ -71,47 +71,36 @@
         </mat-card-content>
     </mat-card>
 </div>
-<mat-card>
-<mat-accordion>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Перевозки
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div fxLayout="column" fxLayout.gt-sm="row">
-            <div fxFlex="1 1 auto">
-                <gmap [markers]="markers"></gmap>
-            </div>
-            <div fxFlex="1 1 auto">
-                <table mat-table [dataSource]="dataSource" fxFlex>
-                    <ng-container matColumnDef="id">
-                        <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
-                    </ng-container>
+<mat-card fxLayout="column" fxLayout.gt-sm="row">
+    <div fxFlex="1 1 auto">
+        <gmap [markers]="markers"></gmap>
+    </div>
+    <div fxFlex="1 1 auto">
+        <table mat-table [dataSource]="dataSource" fxFlex>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>№</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
+            </ng-container>
 
-                    <ng-container matColumnDef="from">
-                        <mat-header-cell *matHeaderCellDef>Адрес отправителя</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.from}}</mat-cell>
-                    </ng-container>
+            <ng-container matColumnDef="from">
+                <mat-header-cell *matHeaderCellDef>Адрес отправителя</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.from}}</mat-cell>
+            </ng-container>
 
-                    <ng-container matColumnDef="to">
-                        <mat-header-cell *matHeaderCellDef>Адрес получателя</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.to}}</mat-cell>
-                    </ng-container>
+            <ng-container matColumnDef="to">
+                <mat-header-cell *matHeaderCellDef>Адрес получателя</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.to}}</mat-cell>
+            </ng-container>
 
-                    <ng-container matColumnDef="status">
-                        <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
-                    </ng-container>
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
+            </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="['id','from','to','status']"></mat-header-row>
-                    <mat-row *matRowDef="let element; columns: ['id','from','to','status'];"></mat-row>
-                </table>
-            </div>
-        </div>
-    </mat-expansion-panel>
-</mat-accordion>
+            <mat-header-row *matHeaderRowDef="['id','from','to','status']"></mat-header-row>
+            <mat-row *matRowDef="let element; columns: ['id','from','to','status'];"></mat-row>
+        </table>
+    </div>
 </mat-card>
 <button mat-fab color="accent" class="floating-button" matTooltip="Копировать заказ" matTooltipPosition="left">
     <mat-icon>library_add</mat-icon>

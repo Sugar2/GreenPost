@@ -5,6 +5,7 @@ import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {PhoneMyOrdersCard} from "../../..";
 import {MapMarkerModel} from "../../../../models/map.marker.model";
 import {QueryService} from "../../../../services/query.service";
+import {isEmpty} from "rxjs/operators";
 export interface TypesOfDelivery {
     value: string;
     viewValue: string;
@@ -27,15 +28,14 @@ export class MyOrdersCardComponent implements OnInit{
     }
 
     ngOnInit() {
-      let order$ = this.query.orders.one(1);
-      order$.subscribe(o => {
-          debugger;//перевірити чи правцює, пофіксити
-          this.order = o;
-      }); //order$ - Observable, order - OrderModel, через асинхронність ф-ції робимо через callbackfunc
+            this.query.orders.one(1).subscribe(order => {
+                this.order = order;
+                this.dataSource = new MatTableDataSource<TransactionModel>(order.transactions);
+            });
+
     }
 
-
-    dataSource = new MatTableDataSource<TransactionModel>(data);
+    dataSource: MatTableDataSource<TransactionModel>;
     typesOfDelivery: TypesOfDelivery[] = [
         {value: 'standart-0', viewValue: 'Стандарт'},
         {value: 'express-1', viewValue: 'Экспресс'}
@@ -82,13 +82,14 @@ export class MyOrdersCardComponent implements OnInit{
 
 }
 
-const data: TransactionModel[] = [
+/*const data: TransactionModel[] = [
     { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'сделан', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null},
     { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'активен', nextId: 2, next: null, orderId: 2, order: null, courierId: 1, courier: null, takeId: 2, take: null},
     { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'в ожидании', nextId: 3, next: null, orderId: 3, order: null, courierId: 1, courier: null, takeId: 3, take: null}
-]
+]*/
 
 let marker: MapMarkerModel[] = [
     {lat: 50.445158, lng: 30.518164},
     {lat: 50.411335, lng: 30.526813}
 ]
+
