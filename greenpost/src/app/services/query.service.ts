@@ -49,16 +49,18 @@ export class QueryService {
                         .map(data => (<TransactionModel[]>data).filter((t: TransactionModel) => t.courierId == id))
                 )
                     .map((data: any[]) => {
-                        let courierOrder = <CourierModel>data[0];
+                        let courier = <CourierModel>data[0];
                         let transactions = <TransactionModel[]>data[1];
-                        courierOrder.transactions = transactions;
-                        transactions.forEach(t => t.courier == courierOrder);
-                        return courierOrder;
+                        courier.transactions = transactions;
+                        transactions.forEach(t => t.courier == courier);
+                        return courier;
                     });
 
             },
-            all() {
-
+            all(): Observable<CourierModel[]> {
+                return http.get('assets/json/couriers.json').map(data => {
+                    return <CourierModel[]>data;
+                });
             }
         }
     }
@@ -80,8 +82,10 @@ export class QueryService {
                         return transaction;
                     });
             },
-            all() {
-
+            all(): Observable<TransactionModel[]> {
+                return http.get('assets/json/transactions.json').map(data => {
+                    return <TransactionModel[]>data;
+                });
             }
         }
     }
