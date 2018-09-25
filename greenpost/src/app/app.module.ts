@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComponent, MyOrdersMainComponent, MyOrdersSectionComponent, MyStarterComponent, MyProfileComponent, MapComponent, FileLoadComponent, LogisticsOrdersCardComponent, LogisticsOrdersMainComponent, LogisticsOrdersSectionComponent, LogisticsTransactionsSectionComponent, LogisticsTransactionsMainComponent, LogisticsTransactionsCardComponent, LogisticsCourierSectionComponent, LogisticsCourierMainComponent, LogisticsCourierCardComponent, MyUsersSectionComponent, MyUsersCreateModalComponent, LogisticsTransactionsCreateModalComponent, MyUsersMainComponent, LogisticsStarterComponent } from './components';
+import { QueryService } from './services';
 
 @NgModule({
     declarations: [
@@ -51,7 +52,7 @@ import { AppComponent, AppHeaderComponent, AppSidebarComponent, MyOrdersCardComp
     providers: [{
         provide: LocationStrategy,
         useClass: HashLocationStrategy
-    }],
+    }, QueryService],
     entryComponents: [
         FileLoadComponent,
         MyUsersCreateModalComponent,

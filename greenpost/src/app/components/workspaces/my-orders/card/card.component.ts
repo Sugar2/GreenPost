@@ -19,20 +19,15 @@ export interface PhoneMyOrdersCard {
     styleUrls: ['./card.component.scss']
 })
 
-export class MyOrdersCardComponent implements OnInit{
-
-
+export class MyOrdersCardComponent implements OnInit {
     order: OrderModel;
-    constructor(private query: QueryService) {
-
-    }
+    constructor(private query: QueryService) { }
 
     ngOnInit() {
-            this.query.orders.one(1).subscribe(order => {
-                this.order = order;
-                this.dataSource = new MatTableDataSource<TransactionModel>(order.transactions);
-            });
-
+        this.query.orders.one(1).subscribe(order => {
+            this.order = order;
+            this.dataSource = new MatTableDataSource<TransactionModel>(order.transactions);
+        });
     }
 
     dataSource: MatTableDataSource<TransactionModel>;
@@ -77,19 +72,5 @@ export class MyOrdersCardComponent implements OnInit{
             this.phones.splice(index, 1);
         }
     }
-
-
-
 }
-
-/*const data: TransactionModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Склад 1', status: 'сделан', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: null, takeId: 1, take: null},
-    { id: 2, from: 'Склад 1', to: 'Склад 3', status: 'активен', nextId: 2, next: null, orderId: 2, order: null, courierId: 1, courier: null, takeId: 2, take: null},
-    { id: 3, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'в ожидании', nextId: 3, next: null, orderId: 3, order: null, courierId: 1, courier: null, takeId: 3, take: null}
-]*/
-
-let marker: MapMarkerModel[] = [
-    {lat: 50.445158, lng: 30.518164},
-    {lat: 50.411335, lng: 30.526813}
-]
 
