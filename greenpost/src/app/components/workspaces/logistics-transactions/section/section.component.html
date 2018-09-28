@@ -62,26 +62,48 @@
             </ng-container>
 
             <ng-container matColumnDef="from">
-                <mat-header-cell *matHeaderCellDef>Адрес отправителя</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>
+                    <mat-form-field fxFlex="1 1 80%">
+                        <input matInput placeholder="Адрес отправителя">
+                    </mat-form-field>
+                </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.from ? element.from : element.transactions && element.transactions.length ? element.transactions[0].from : ''}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="to">
-                <mat-header-cell *matHeaderCellDef>Адрес получателя</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>
+                    <mat-form-field fxFlex="1 1 80%">
+                        <input matInput placeholder="Адрес получателя">
+                    </mat-form-field>
+                </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.to ? element.to : ''}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="courier">
-                <mat-header-cell *matHeaderCellDef>Курьер</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>
+                    <mat-form-field fxFlex="1 1 80%">
+                        <input matInput placeholder="Курьер">
+                    </mat-form-field>
+                </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.courier ? element.courier.name : ''}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="status">
-                <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>
+                    <mat-form-field fxFlex="1 1 80%">
+                        <input matInput placeholder="Статус">
+                    </mat-form-field>
+                </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.status}}</mat-cell>
             </ng-container>
             <ng-container matColumnDef="date">
-                <mat-header-cell *matHeaderCellDef>Дата создания</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>
+                    <mat-form-field fxFlex="1 1 80%">
+                        <input matInput placeholder="Дата создания" [matRangeDatepicker]="resultPicker" [(ngModel)]="date">
+                        <mat-range-datepicker #resultPicker [rangeMode]="true"></mat-range-datepicker>
+                        <mat-range-datepicker-toggle matSuffix [for]="resultPicker"></mat-range-datepicker-toggle>
+                    </mat-form-field>
+                </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.createdOn ? (element.createdOn | date:"dd.MM.yyyy") : ''}}</mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="['select', 'date', 'from', 'to', 'status', 'courier']"></mat-header-row>

@@ -36,6 +36,14 @@ export class LogisticsTransactionsSectionComponent implements OnInit {
     constructor(private router: Router, public dialog: MatDialog, private snackBar: MatSnackBar) { }
     dataSource: MatTableDataSource<TransactionModel | TakeModel>;
     expandedElement: TransactionModel | TakeModel;
+    _date: matRangeDatepickerRangeValue<Date>;
+    get date(): matRangeDatepickerRangeValue<Date> {
+        return this._date;
+    };
+    set date(value: matRangeDatepickerRangeValue<Date>) {
+        this._date = value;
+    };
+
     openCard(rowId: number): void {
         this.router.navigate(['logistics-transactions', 'card'])
     }
