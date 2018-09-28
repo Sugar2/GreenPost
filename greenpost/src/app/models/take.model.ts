@@ -1,6 +1,6 @@
 import {TransactionModel} from "./transaction.model";
 
 export class TakeModel {
-    id: number;
-    transactions: TransactionModel[];
+    public id: number;
+    public transactions: TransactionModel[];
 }
