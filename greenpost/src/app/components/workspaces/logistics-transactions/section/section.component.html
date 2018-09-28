@@ -90,8 +90,6 @@
         </table>
     </mat-card>
 </div>
-<!--[class.clickable-row]="isTake(row)"
-            [@detailExpand]="!row.take || row.take == expandedElement ? 'expanded' : 'collapsed'"-->
 <button [@actions]="selection.hasValue() ? 'active' : 'inactive'"
         mat-fab color="accent" class="floating-button" matTooltip="Назначить курьера"
         matTooltipPosition="left" (click)="openCreateDialog()">

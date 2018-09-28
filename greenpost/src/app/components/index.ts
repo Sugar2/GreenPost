@@ -43,3 +43,16 @@ export * from './widgets/gmap/gmap.component';
 
 //file-load
 export * from './widgets/file-load/file-load.component';
+
+//daterange
+export * from './widgets/daterange/datepicker/range-calendar';
+export * from './widgets/daterange/datepicker/calendar';
+export * from './widgets/daterange/datepicker/calendar-body';
+export * from './widgets/daterange/datepicker/datepicker';
+export * from './widgets/daterange/datepicker/datepicker-animations';
+export * from './widgets/daterange/datepicker/datepicker-input';
+export * from './widgets/daterange/datepicker/datepicker-intl';
+export * from './widgets/daterange/datepicker/datepicker-toggle';
+export * from './widgets/daterange/datepicker/month-view';
+export * from './widgets/daterange/datepicker/year-view';
+export * from './widgets/daterange/datepicker/multi-year-view';
