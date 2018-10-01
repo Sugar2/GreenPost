@@ -2,7 +2,6 @@ import { OrderModel, CourierModel, TakeModel } from ".";
 
 export class TransactionModel {
     public id: number;
-    public createdOn: Date;
     public from: string;
     public to: string;
     public status: string;
