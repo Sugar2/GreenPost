@@ -36,42 +36,81 @@ export class LogisticsTransactionsSectionComponent implements OnInit {
     constructor(private router: Router, public dialog: MatDialog, private snackBar: MatSnackBar) { }
     dataSource: MatTableDataSource<TransactionModel | TakeModel>;
     expandedElement: TransactionModel | TakeModel;
+    _date: matRangeDatepickerRangeValue<Date>;
+    get date(): matRangeDatepickerRangeValue<Date> {
+        return this._date;
+    };
+    set date(value: matRangeDatepickerRangeValue<Date>) {
+        this._date = value;
+    };
+
     openCard(rowId: number): void {
         this.router.navigate(['logistics-transactions', 'card'])
     }
 
     ngOnInit() {
-        let rows = (<(TransactionModel | TakeModel)[]>data).concat(takes);
+        let rows = (<(TransactionModel | TakeModel)[]>takes).concat(data);
         rows.forEach((row: any) => {
             if (this.isTake(row)) {
-                row.transactions = rows.filter((r: any) => r.takeId == row.id);
+                row.transactions = rows.filter((r: any) => !this.isTake(r) && r.takeId == row.id);
             } else {
-                let takes = rows.filter((r: any) => r.id == row.takeId);
-                row.take = takes && takes.length > 0 ? takes[0] : null;
+                let take = rows.find((r: any) => this.isTake(r) && r.id == row.takeId);
+                row.take = take;
             }
         });
-        this.dataSource = new MatTableDataSource<TransactionModel | TakeModel>(rows.sort((a, b) => a.id - b.id));
+        this.dataSource = new MatTableDataSource<TransactionModel | TakeModel>(rows.sort((a, b) => {
+            let aCreatedOn = this.isTake(a)
+                ? (<TakeModel>a).transactions.reduce((max: Date, t: TransactionModel) =>
+                    max.getTime() > t.createdOn.getTime() ? max : t.createdOn, new Date(0)).getTime()
+                : ((<TransactionModel>a).take ? (<TransactionModel>a).take.transactions.reduce((max: Date, t: TransactionModel) =>
+                    max.getTime() > t.createdOn.getTime() ? max : t.createdOn, new Date(0)).getTime() : (<TransactionModel>a).createdOn.getTime());
+            let bCreatedOn = this.isTake(b)
+                ? (<TakeModel>b).transactions.reduce((max: Date, t: TransactionModel) =>
+                    max.getTime() > t.createdOn.getTime() ? max : t.createdOn, new Date(0)).getTime()
+                : ((<TransactionModel>b).take ? (<TransactionModel>b).take.transactions.reduce((max: Date, t: TransactionModel) =>
+                    max.getTime() > t.createdOn.getTime() ? max : t.createdOn, new Date(0)).getTime() : (<TransactionModel>b).createdOn.getTime());
+            if (this.isTake(a) && !this.isTake(b))
+                if ((<TakeModel>a).id == (<TransactionModel>b).takeId)
+                    return -1;
+                else
+                    if ((<TransactionModel>b).takeId)
+                        return bCreatedOn - aCreatedOn;
+                    else
+                        return 1;
+            if (this.isTake(b) && !this.isTake(a))
+                if ((<TakeModel>b).id == (<TransactionModel>a).takeId)
+                    return 1;
+                else
+                    if ((<TransactionModel>a).takeId)
+                        return bCreatedOn - aCreatedOn;
+                    else
+                        return -1;
+            if (this.isTake(a) && this.isTake(b))
+                return bCreatedOn - aCreatedOn;
+            if (!this.isTake(a) && !this.isTake(b))
+                return bCreatedOn - aCreatedOn;
+        }));
     }
 
     getDataLength() {
-        return this.dataSource.data.filter((r: any) => this.isTransaction(r)).length;
+        return this.dataSource.data.filter((r: any) => !this.isTake(r)).length;
     }
 
     selection = new SelectionModel<TransactionModel | TakeModel>(true, []);
     
     isAllSelected() {
         const numSelected = this.selection.selected.length;
-        const numRows = this.dataSource.data.length;
+        const numRows = this.dataSource.data.filter((r: any) => !this.isTake(r)).length;
         return numSelected === numRows;
     }
 
     isTakeSomeSelected(row: TakeModel) {
-        return this.selection.selected.filter((r: any) => r.take && r.take.id == row.id).length > 0;
+        return this.selection.selected.filter((r: any) => r.take && !this.isTake(r) && r.take.id == row.id).length > 0;
     }
 
     isTakeSelected(row: TakeModel) {
-        const numSelected = this.selection.selected.filter((r: any) => r.take && r.take.id == row.id).length;
-        const numRows = this.dataSource.data.filter((r: any) => r.take && r.take.id == row.id).length;
+        const numSelected = this.selection.selected.filter((r: any) => r.take && !this.isTake(r) && r.take.id == row.id).length;
+        const numRows = this.dataSource.data.filter((r: any) => r.take && !this.isTake(r) && r.take.id == row.id).length;
         return numSelected === numRows;
     }
 
@@ -85,8 +124,8 @@ export class LogisticsTransactionsSectionComponent implements OnInit {
 
     takeToggle(row: TakeModel) {
         this.isTakeSelected(row) ?
-            this.dataSource.data.filter((r: any) => r.take && r.take.id == row.id).forEach(row => this.selection.deselect(row)) :
-            this.dataSource.data.filter((r: any) => r.take && r.take.id == row.id).forEach(row => this.selection.select(row));
+            this.dataSource.data.filter((r: any) => r.take && !this.isTake(r) && r.take.id == row.id).forEach(row => this.selection.deselect(row)) :
+            this.dataSource.data.filter((r: any) => r.take && !this.isTake(r) && r.take.id == row.id).forEach(row => this.selection.select(row));
     }
 
     masterToggle() {
@@ -118,10 +157,11 @@ const takes: TakeModel[] = [
 ]
 
 const data: TransactionModel[] = [
-    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: { id: 1, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null },
-    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 2, order: null, courierId: 2, courier: { id: 2, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null},
-    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 3, order: null, courierId: 3, courier: { id: 3, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null},
-    { id: 5, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 4, order: null, courierId: null, courier: null, takeId: 1, take: null},
-    { id: 7, from: 'Склад 1', to: 'Склад 3', status: 'В работе', nextId: 1, next: null, orderId: 5, order: null, courierId: null, courier: null, takeId: 6, take: null},
-    { id: 8, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', nextId: 1, next: null, orderId: 6, order: null, courierId: null, courier: null, takeId: null, take: null}
+    { id: 2, createdOn: new Date(2018, 9, 25), from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: { id: 1, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null},
+    { id: 3, createdOn: new Date(2018, 9, 27), from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 2, order: null, courierId: 2, courier: { id: 2, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null},
+    { id: 4, createdOn: new Date(2018, 9, 27), from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 3, order: null, courierId: 3, courier: { id: 3, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null},
+    { id: 5, createdOn: new Date(2018, 9, 27), from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 4, order: null, courierId: null, courier: null, takeId: 1, take: null},
+    { id: 7, createdOn: new Date(2018, 9, 26), from: 'Склад 1', to: 'Склад 3', status: 'В работе', nextId: 1, next: null, orderId: 5, order: null, courierId: null, courier: null, takeId: 6, take: null},
+    { id: 8, createdOn: new Date(2018, 9, 28), from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', nextId: 1, next: null, orderId: 6, order: null, courierId: null, courier: null, takeId: null, take: null },
+    { id: 8, createdOn: new Date(2018, 9, 23), from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', nextId: 1, next: null, orderId: 6, order: null, courierId: null, courier: null, takeId: null, take: null },
 ]
