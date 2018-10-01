@@ -1,4 +1,4 @@
 export class UserRoleModel {
-    public id: string;
+    public id: number;
     public name: string;
 }

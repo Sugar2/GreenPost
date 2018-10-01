@@ -15,10 +15,10 @@ export class QueryService {
         return {
             one(id: number): Observable<OrderModel> {
                 return Observable.forkJoin(
-                    http.get('assets/json/orders.json')
+                    http.get('https://greenpost.azurewebsites.net/query/orders/{id}')
                         .map(data => (<OrderModel[]>data).filter(o => o.id == id))
                         .take(1).map(data => data.length == 1 ? <OrderModel>data[0] : null),
-                    http.get('assets/json/transactions.json')
+                    http.get('https://greenpost.azurewebsites.net/query/transactions')
                         .map(data => (<TransactionModel[]>data).filter((t: TransactionModel) => t.orderId == id))
                 )
                     .map((data: any[]) => {
@@ -30,7 +30,7 @@ export class QueryService {
                     });
             },
             all(): Observable<OrderModel[]> {
-                return http.get('assets/json/orders.json').map(data => {
+                return http.get('https://greenpost.azurewebsites.net/query/orders').map(data => {
                     return <OrderModel[]>data;
                 });
             }
@@ -42,10 +42,10 @@ export class QueryService {
         return {
             one(id: number): Observable<CourierModel> {
                 return Observable.forkJoin(
-                    http.get('assets/json/couriers.json')
+                    http.get('https://greenpost.azurewebsites.net/query/couriers/{id}')
                         .map(data => (<CourierModel[]>data).filter(o => o.id == id))
                         .take(1).map(data => data.length == 1 ? <CourierModel>data[0] : null),
-                    http.get('assets/json/transactions.json')
+                    http.get('https://greenpost.azurewebsites.net/query/transactions')
                         .map(data => (<TransactionModel[]>data).filter((t: TransactionModel) => t.courierId == id))
                 )
                     .map((data: any[]) => {
@@ -58,7 +58,7 @@ export class QueryService {
 
             },
             all(): Observable<CourierModel[]> {
-                return http.get('assets/json/couriers.json').map(data => {
+                return http.get('https://greenpost.azurewebsites.net/query/couriers').map(data => {
                     return <CourierModel[]>data;
                 });
             }
@@ -70,10 +70,10 @@ export class QueryService {
         return {
             one(id: number): Observable<CourierModel> {
                 return Observable.forkJoin(
-                    http.get('assets/json/transactions.json'),
-                    http.get('assets/json/orders.json'),
-                    http.get('assets/json/couriers.json'),
-                    http.get('assets/json/takes.json'))
+                    http.get('https://greenpost.azurewebsites.net/query/transactions/{id}'),
+                    http.get('https://greenpost.azurewebsites.net/query/orders/{id}'),
+                    http.get('https://greenpost.azurewebsites.net/query/couriers/{id}'),
+                    http.get('https://greenpost.azurewebsites.net/query/takes/{id}'))
                     .map((data: any[]) => {
                         let transaction = data[0].filter(t => t.id == id);
                         transaction.order = data[1].filter(o => o.id = transaction.orderId).take(1).map(data => data.length == 1 ? <OrderModel>data[0] : null);
@@ -83,7 +83,7 @@ export class QueryService {
                     });
             },
             all(): Observable<TransactionModel[]> {
-                return http.get('assets/json/transactions.json').map(data => {
+                return http.get('https://greenpost.azurewebsites.net/query/transactions').map(data => {
                     return <TransactionModel[]>data;
                 });
             }

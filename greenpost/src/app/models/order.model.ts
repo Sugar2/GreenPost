@@ -1,12 +1,11 @@
 import { TransactionModel } from ".";
+import {ClientModel} from "./client.model";
+import {OrderStatusModel} from "./order.status.model";
 
 export class OrderModel {
     public id: number;
-    public reciever: string;
-    public from: string;
-    public to: string;
-    public status: string;
-    public price: number;
-    public type: string;
+    public clientId: number;
+    public client: ClientModel;
+    public status: OrderStatusModel;
     public transactions: TransactionModel[];
 }
