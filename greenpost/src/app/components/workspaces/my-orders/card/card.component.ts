@@ -5,7 +5,6 @@ import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {PhoneMyOrdersCard} from "../../..";
 import {MapMarkerModel} from "../../../../models/map.marker.model";
 import {QueryService} from "../../../../services/query.service";
-import {isEmpty} from "rxjs/operators";
 export interface TypesOfDelivery {
     value: string;
     viewValue: string;

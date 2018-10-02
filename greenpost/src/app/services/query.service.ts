@@ -15,7 +15,7 @@ export class QueryService {
         return {
             one(id: number): Observable<OrderModel> {
                 return Observable.forkJoin(
-                    http.get('https://greenpost.azurewebsites.net/query/orders/{id}')
+                    http.get('https://greenpost.azurewebsites.net/query/orders/${id}')
                         .map(data => (<OrderModel[]>data).filter(o => o.id == id))
                         .take(1).map(data => data.length == 1 ? <OrderModel>data[0] : null),
                     http.get('https://greenpost.azurewebsites.net/query/transactions')
@@ -42,7 +42,7 @@ export class QueryService {
         return {
             one(id: number): Observable<CourierModel> {
                 return Observable.forkJoin(
-                    http.get('https://greenpost.azurewebsites.net/query/couriers/{id}')
+                    http.get('https://greenpost.azurewebsites.net/query/couriers/${id}')
                         .map(data => (<CourierModel[]>data).filter(o => o.id == id))
                         .take(1).map(data => data.length == 1 ? <CourierModel>data[0] : null),
                     http.get('https://greenpost.azurewebsites.net/query/transactions')
@@ -70,10 +70,10 @@ export class QueryService {
         return {
             one(id: number): Observable<CourierModel> {
                 return Observable.forkJoin(
-                    http.get('https://greenpost.azurewebsites.net/query/transactions/{id}'),
-                    http.get('https://greenpost.azurewebsites.net/query/orders/{id}'),
-                    http.get('https://greenpost.azurewebsites.net/query/couriers/{id}'),
-                    http.get('https://greenpost.azurewebsites.net/query/takes/{id}'))
+                    http.get('https://greenpost.azurewebsites.net/query/transactions/${id}'),
+                    http.get('https://greenpost.azurewebsites.net/query/orders/${id}'),
+                    http.get('https://greenpost.azurewebsites.net/query/couriers/${id}'),
+                    http.get('https://greenpost.azurewebsites.net/query/takes/${id}'))
                     .map((data: any[]) => {
                         let transaction = data[0].filter(t => t.id == id);
                         transaction.order = data[1].filter(o => o.id = transaction.orderId).take(1).map(data => data.length == 1 ? <OrderModel>data[0] : null);

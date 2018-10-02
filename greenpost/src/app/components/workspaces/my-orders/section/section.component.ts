@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
-import { OrderModel } from '../../../../models';
+import {Component, OnInit} from '@angular/core';
+import {OrderModel, TransactionModel} from '../../../../models';
 import {MatTableDataSource, MatBottomSheet, MatChipInputEvent} from '@angular/material';
 import { Router } from '@angular/router';
 import { FileLoadComponent } from '../../../widgets/file-load/file-load.component';
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {QueryService} from "../../../../services";
 export interface PhoneMyOrders {
     name: string;
 }
@@ -13,9 +14,18 @@ export interface PhoneMyOrders {
   styleUrls: ['./section.component.scss']
 })
 
-export class MyOrdersSectionComponent {
-    constructor(private router: Router, private bottomSheet: MatBottomSheet) { }
-    dataSource = new MatTableDataSource<OrderModel>(data);
+export class MyOrdersSectionComponent implements OnInit {
+
+    order: OrderModel;
+    constructor(private query: QueryService, private router: Router, private bottomSheet: MatBottomSheet) { }
+
+    ngOnInit() {
+        this.query.orders.one(1).subscribe(order => {
+            this.order = order;
+            this.dataSource = new MatTableDataSource<TransactionModel>(order.transactions);
+        });
+    }
+    dataSource: MatTableDataSource<TransactionModel>;
 
     openCard(rowId: number): void {
         this.router.navigate(['my-orders', 'card'])
@@ -59,6 +69,7 @@ export class MyOrdersSectionComponent {
     }
 }
 
+/*
 const data: OrderModel[] = [
     { id: 1, clientId: 1, client: null, status: null, transactions: [] },
     { id: 2, clientId: 2, client: null, status: null, transactions: [] },
@@ -66,4 +77,5 @@ const data: OrderModel[] = [
     { id: 4, clientId: 4, client: null, status: null, transactions: [] },
     { id: 5, clientId: 5, client: null, status: null, transactions: [] }
 ]
+*/
 

@@ -46,27 +46,27 @@
                 <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="reciever">
-                <mat-header-cell *matHeaderCellDef>Получатель</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.reciever}}</mat-cell>
+            <ng-container matColumnDef="clientId">
+                <mat-header-cell *matHeaderCellDef>ID Клиента</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.clientId}}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="from">
-                <mat-header-cell *matHeaderCellDef>Адрес отправителя</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.from}}</mat-cell>
+            <ng-container matColumnDef="client">
+                <mat-header-cell *matHeaderCellDef>Клиент</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.client}}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="to">
+            <!--<ng-container matColumnDef="to">
                 <mat-header-cell *matHeaderCellDef>Адрес получателя</mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.to}}</mat-cell>
-            </ng-container>
+            </ng-container>-->
 
             <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef>Статус</mat-header-cell>
                 <mat-cell *matCellDef="let element" [style.color]="element.status == 'Активен' ? 'green' : 'red'"> {{element.status}}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="price">
+            <!--<ng-container matColumnDef="price">
                 <mat-header-cell *matHeaderCellDef> Цена </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.price}} грн </mat-cell>
             </ng-container>
@@ -74,10 +74,10 @@
             <ng-container matColumnDef="type">
                 <mat-header-cell *matHeaderCellDef> Тип доставки </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
-            </ng-container>
+            </ng-container>-->
 
-            <mat-header-row *matHeaderRowDef="['id','from','to','reciever','status', 'price', 'type']"></mat-header-row>
-            <mat-row class="clickable-row" *matRowDef="let element; columns: ['id','from','to','reciever','status', 'price', 'type'];" (click)="openCard(element.id)"></mat-row>
+            <mat-header-row *matHeaderRowDef="['id','client', 'clientId','status']"></mat-header-row>
+            <mat-row class="clickable-row" *matRowDef="let element; columns: ['id','client', 'clientId','status'];" (click)="openCard(element.id)"></mat-row>
         </table>
     </mat-card-content>
 </mat-card>
