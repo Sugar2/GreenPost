@@ -118,10 +118,9 @@ const takes: TakeModel[] = [
 ]
 
 const data: TransactionModel[] = [
-    { id: 2, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 1, order: null, courierId: 1, courier: { id: 1, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null },
-    { id: 3, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 2, order: null, courierId: 2, courier: { id: 2, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null},
-    { id: 4, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 3, order: null, courierId: 3, courier: { id: 3, name: "Вася", status: "Active", transactions: [] }, takeId: 1, take: null},
-    { id: 5, from: 'Маяковского 18', to: 'Склад 1', status: 'Выполнен', nextId: 1, next: null, orderId: 4, order: null, courierId: null, courier: null, takeId: 1, take: null},
-    { id: 7, from: 'Склад 1', to: 'Склад 3', status: 'В работе', nextId: 1, next: null, orderId: 5, order: null, courierId: null, courier: null, takeId: 6, take: null},
-    { id: 8, from: 'Склад 3', to: 'Лаврухина 7/1', status: 'В очереди', nextId: 1, next: null, orderId: 6, order: null, courierId: null, courier: null, takeId: null, take: null}
+    { id: 1, nextId: 1, next: null, takeId: 1, take: null, courierId: 1, courier: null, orderId: 1, order: null, status: null, fromId: 1, from: null, toId: 1, to: null},
+    { id: 2, nextId: 2, next: null, takeId: 2, take: null, courierId: 2, courier: null, orderId: 2, order: null, status: null, fromId: 2, from: null, toId: 2, to: null},
+    { id: 3, nextId: 3, next: null, takeId: 3, take: null, courierId: 3, courier: null, orderId: 3, order: null, status: null, fromId: 3, from: null, toId: 3, to: null},
+    { id: 4, nextId: 4, next: null, takeId: 4, take: null, courierId: 4, courier: null, orderId: 4, order: null, status: null, fromId: 4, from: null, toId: 4, to: null},
+    { id: 5, nextId: 5, next: null, takeId: 5, take: null, courierId: 5, courier: null, orderId: 5, order: null, status: null, fromId: 5, from: null, toId: 5, to: null}
 ]

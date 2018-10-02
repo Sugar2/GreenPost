@@ -51,8 +51,8 @@ export class MyUsersSectionComponent implements OnInit {
 }
 
 const users: UserModel[] = [
-    { id: "1", username: "koscheyevserge", displayName: "Кощеев Сергей", roles: [{ id: '1', name: 'Менеджер' }, { id: '2', name: 'Руководитель' }] },
-    { id: "2", username: "koscheyevserge", displayName: "Кощеев Сергей", roles: [{ id: '1', name: 'Менеджер' }, { id: '2', name: 'Руководитель' }] },
-    { id: "3", username: "koscheyevserge", displayName: "Кощеев Сергей", roles: [{ id: '1', name: 'Менеджер' }, { id: '2', name: 'Руководитель' }] },
-    { id: "4", username: "koscheyevserge", displayName: "Кощеев Сергей", roles: [{ id: '1', name: 'Менеджер' }, { id: '2', name: 'Руководитель' }] }
+    { id: 1},
+    { id: 2},
+    { id: 3},
+    { id: 4}
 ]

@@ -60,9 +60,10 @@ export class MyOrdersSectionComponent {
 }
 
 const data: OrderModel[] = [
-    { id: 1, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс', transactions: [] },
-    { id: 2, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс', transactions: []},
-    { id: 3, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс', transactions: []},
-    { id: 4, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс', transactions: []},
-    { id: 5, from: 'Маяковского 18', to: 'Лаврухина 7/1', reciever: 'Игорь Иванов', status: 'Активен', price: 232, type: 'Экспресс', transactions: []}
+    { id: 1, clientId: 1, client: null, status: null, transactions: [] },
+    { id: 2, clientId: 2, client: null, status: null, transactions: [] },
+    { id: 3, clientId: 3, client: null, status: null, transactions: [] },
+    { id: 4, clientId: 4, client: null, status: null, transactions: [] },
+    { id: 5, clientId: 5, client: null, status: null, transactions: [] }
 ]
+

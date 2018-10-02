@@ -10,5 +10,5 @@ import { UserRoleModel } from '../../../../models';
 })
 export class MyUsersCreateModalComponent {
     constructor(public dialogRef: MatDialogRef<MyUsersCreateModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
-    allRoles: UserRoleModel[] = [{ id: '1', name: 'Менеджер' }, { id: '2', name: 'Руководитель' }];
+    allRoles: UserRoleModel[] = [{ id: 1, name: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' }, { id: 2, name: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' }];
 }
